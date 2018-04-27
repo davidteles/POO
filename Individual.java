@@ -78,11 +78,4 @@ public class Individual {
 		return dist_end;
 	}
 	
-	//parâmetro do conforto
-	public int distanceFromStart(Coord current_pos) {
-		
-		int dist_start=0;
-		dist_start= (current_pos.x - population.init_pos.x) + (current_pos.y - population.init_pos.y);	
-		return dist_start;
-	}
 }
