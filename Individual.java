@@ -9,6 +9,7 @@ public class Individual {
 	private float confort;
 	private Coord curr_pos;
 	LinkedList<Coord> list;
+	Population population;
 	
 	public Individual(int Id, Coord pos) {
 		list = null;
@@ -52,6 +53,7 @@ public class Individual {
 		this.confort = confort;
 	}
 
+	
 	public Coord getCurr_pos() {
 		return curr_pos;
 	}
@@ -68,6 +70,19 @@ public class Individual {
 		this.list = list;
 	}
 
+	//parâmetro do conforto
+	public int distanceToEnd(Coord current_pos) { 
+
+		int dist_end=0;
+		dist_end= (population.fin_pos.x - current_pos.x) + (population.fin_pos.y - current_pos.y);
+		return dist_end;
+	}
 	
-	
+	//parâmetro do conforto
+	public int distanceFromStart(Coord current_pos) {
+		
+		int dist_start=0;
+		dist_start= (current_pos.x - population.ini_pos.x) + (current_pos.y - population.ini_pos.y);	
+		return dist_start;
+	}
 }
