@@ -1,10 +1,12 @@
 package project;
 
 public class Zone {
-	Coord point1, point2;
-	int cost;
 	
+	/*FIELDS*/
+	Coord point1, point2; //duas coordenadas que definem zona especial - dois pontos na diagonal
+	int cost; //custo da zona
 	
+	/*CONSTRUCTOR*/
 	public Zone(Coord a, Coord b, int value) {
 		if(a.x<b.x) {
 			point1 = a;
@@ -17,6 +19,7 @@ public class Zone {
 		cost = value;
 	}
 	
+	//REVER se vai funcionar como pensado inicialmente
 	public int Intersection(Coord input) {
 		if(point1.equals(input)) {
 			//System.out.println("Equal to point 1");
@@ -39,6 +42,7 @@ public class Zone {
 		return 1;
 	}
 	
+	/*Main para tester zonas*/
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Coord point_a = new Coord(1,1);
