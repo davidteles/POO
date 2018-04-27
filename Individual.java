@@ -82,7 +82,7 @@ public class Individual {
 	public int distanceFromStart(Coord current_pos) {
 		
 		int dist_start=0;
-		dist_start= (current_pos.x - population.ini_pos.x) + (current_pos.y - population.ini_pos.y);	
+		dist_start= (current_pos.x - population.init_pos.x) + (current_pos.y - population.init_pos.y);	
 		return dist_start;
 	}
 }
