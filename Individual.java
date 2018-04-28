@@ -10,7 +10,7 @@ public class Individual {
 	private int distance; //distancia percorrida
 	private float confort; //conforto atual do individuo
 	private Coord curr_pos; //coordenadas da posicao actual do individuo
-	LinkedList<Coord> list; //lista com o caminho feito pelo individuo
+	LinkedList<Coord> path; //lista com o caminho feito pelo individuo
 	Population population; //associacao a classe population - REVER associacao
 	
 	/*CONSTRUCTOR*/
@@ -70,7 +70,7 @@ public class Individual {
 	}
 
 	public void setList(LinkedList<Coord> list) {
-		this.list = list;
+		this.path = path;
 	}
 
 	//parametro do conforto - menor n
@@ -87,5 +87,30 @@ public class Individual {
 		int dist_start=0;
 		dist_start= (current_pos.x - population.init_pos.x) + (current_pos.y - population.init_pos.y);	
 		return dist_start;
+	}
+	
+	//Adicionar ponto ao caminho do indivíduo
+	public void addPath(int x,int y) {
+		
+		Coord temp = new Coord(x,y);
+		this.path.addLast(temp);
+		
+	}
+	
+	//Remover ponto do caminho do indivíduo (no método movimento fazemos as condicoes para retirar os elementos quando 
+	//o indivíduo chega a um ponto que já pertence ao caminho
+	public void removePath() {
+		
+		this.path.removeLast();
+	}
+	
+	//Cálculo do conforto, tem erros porque ainda nao definimos k,cmax, n e m (tipo static final)
+	public float Confort (int tcost, int length, int distance) {
+		
+		int conforto=0;
+		
+		conforto= ((1-((tcost-length + 2)/((cmax-1)*length + 3)))^k) * ((1-((dist)/(n + m + 1)))^k)
+				
+		return conforto;
 	}
 }
