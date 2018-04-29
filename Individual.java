@@ -15,7 +15,7 @@ public class Individual {
 	
 	/*CONSTRUCTOR*/
 	public Individual(int Id, Coord pos) {
-		list = null; //lista inicialmente a null
+		path = null; //lista inicialmente a null
 		id = Id; //id do individuo logo estabelicido assim que este e criado
 		total_cost = 0; //custo inicial e zero
 		distance = 0; //ditancia inicial e zero
@@ -65,15 +65,15 @@ public class Individual {
 		this.curr_pos = curr_pos;
 	}
 
-	public LinkedList<Coord> getList() {
-		return list;
+	public LinkedList<Coord> getPath() {
+		return path;
 	}
 
-	public void setList(LinkedList<Coord> list) {
-		this.path = path;
+	public void setPath(LinkedList<Coord> list) {
+		this.path = list;
 	}
 
-	//parametro do conforto - menor nº de arestas desde a posicao atual ate a posicao final
+	//parametro do conforto - menor numero de arestas desde a posicao atual ate a posicao final
 	public int distanceToEnd(Coord current_pos) { 
 		
 		int dist_end = 0;
@@ -90,7 +90,7 @@ public class Individual {
 		return dist_start;
 	}
 	
-	//Adicionar ponto ao caminho do indivíduo
+	//Adicionar ponto ao caminho do individuo
 	public void addPath(int x,int y) {
 		
 		Coord temp = new Coord(x,y);
@@ -98,19 +98,19 @@ public class Individual {
 		
 	}
 	
-	//Remover ponto do caminho do indivíduo (no método movimento fazemos as condicoes para retirar os elementos quando 
+	//Remover ponto do caminho do indivduo (no método movimento fazemos as condicoes para retirar os elementos quando 
 	//o indivíduo chega a um ponto que já pertence ao caminho
 	public void removePath() {
 		
 		this.path.removeLast();
 	}
 	
-	//Cálculo do conforto, tem erros porque ainda nao definimos k,cmax, n e m (tipo static final)
+	//calculo do conforto, tem erros porque ainda nao definimos k,cmax, n e m (tipo static final)
 	public float Confort (int cmax, int tcost, int length, int dist, int n, int m, int k) {
 		//cmax - vem do custo maximo que uma aresta pode ter - ir buscar as zonas especiais - pode ser uma variavel que se guarda logo
 		//tcost - vem do individuo
 		//length - tamanho do caminho que o individuo ja fez
-		//dist - menor nº de arestas ate ao ponto final
+		//dist - menor numero de arestas ate ao ponto final
 		//n e m - tamanho da grid, n-x, m-y
 		//k - ir buscar a population
 		

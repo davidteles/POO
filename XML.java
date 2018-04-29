@@ -3,21 +3,36 @@ package project;
 import javax.xml.parsers.*;
 import java.io.File;
 import java.util.LinkedList;
-
 import org.w3c.dom.*;
 
 public class XML {
 	
 	/*FIELDS*/
 	int[] var;
+	Coord size;
+	Coord init;
+	Coord end;
 	LinkedList<Zone> zones;
 	LinkedList<Coord> obstacles;
 	
 	public XML(){
-		this.var = new int[14];
+		this.var = new int[8];
 		this.zones = null;
 		this.obstacles = null;		
 	}
+	
+	/*Preenche a lista de zonas especiais*/
+	public void addZone(Coord point_a, Coord point_b,int cost) {
+		Zone temp = new Zone(point_a,point_b,cost);
+		this.zones.addLast(temp);
+	}
+	
+	/*Preenche a lista de obstaculos*/
+	public void addObstacle(int x,int y) {
+		Coord temp = new Coord(x,y);
+		this.obstacles.addLast(temp);
+	}
+	
 	
 	public void ParseXML(String filename) {
 		
@@ -31,7 +46,7 @@ public class XML {
 			
 			if(file.exists()) {
 				
-				int xi, yi, xf, yf, val, i;
+				int xi, yi, xf, yf, val;
 				
 				//Obter o documento
 				Document doc = db.parse(file);
@@ -47,21 +62,23 @@ public class XML {
 				NodeList nodelist = doc.getElementsByTagName("grid");
 				Node node = nodelist.item(0);
 				elem = (Element) node;
-				this.var[4] = Integer.parseInt(elem.getAttribute("colsnb"));
-				this.var[5] = Integer.parseInt(elem.getAttribute("rowsnb"));
+				xi = Integer.parseInt(elem.getAttribute("colsnb"));
+				yi = Integer.parseInt(elem.getAttribute("rowsnb"));
+				this.size = new Coord(xi,yi);
 				
 				nodelist = doc.getElementsByTagName("initialpoint");
 				node = nodelist.item(0);
 				elem = (Element) node;
-				this.var[6] = Integer.parseInt(elem.getAttribute("xinitial"));
-				this.var[7] = Integer.parseInt(elem.getAttribute("yinitial"));
-		
+				xi = Integer.parseInt(elem.getAttribute("xinitial"));
+				yi = Integer.parseInt(elem.getAttribute("yinitial"));
+				this.init = new Coord(xi,yi);
 				
 				nodelist = doc.getElementsByTagName("finalpoint");
 				node = nodelist.item(0);
 				elem = (Element) node;
-				this.var[8] = Integer.parseInt(elem.getAttribute("xfinal"));
-				this.var[9] = Integer.parseInt(elem.getAttribute("yfinal"));
+				xf = Integer.parseInt(elem.getAttribute("xfinal"));
+				yf = Integer.parseInt(elem.getAttribute("yfinal"));
+				this.end = new Coord(xf,yf);
 				
 				nodelist = doc.getElementsByTagName("zone");
 				
@@ -69,7 +86,7 @@ public class XML {
 					
 					this.zones = new LinkedList<Zone>();
 					
-					for(i=0; i<nodelist.getLength(); i++) {
+					for(int i=0; i<nodelist.getLength(); i++) {
 						node = nodelist.item(i);
 						elem = (Element) node;
 						
@@ -78,43 +95,43 @@ public class XML {
 						xf = Integer.parseInt(elem.getAttribute("xfinal"));
 						yf = Integer.parseInt(elem.getAttribute("yfinal"));
 						val = Integer.parseInt(elem.getTextContent());
-						this.zones.add(new Zone(new Coord(xi, yi), new Coord(xf,yf),val));
+						this.addZone(new Coord(xi, yi), new Coord(xf,yf),val);
 					}
 				} 
 				
 				nodelist = doc.getElementsByTagName("obstacles");
 				node = nodelist.item(0);
 				elem = (Element) node;
-				this.var[10] = Integer.parseInt(elem.getAttribute("num"));
+				this.var[4] = Integer.parseInt(elem.getAttribute("num"));
 				
 				nodelist = doc.getElementsByTagName("obstacle");
 				
-				if(nodelist != null && this.var[10]>0) {
+				if(nodelist != null && this.var[4]>0) {
 					
 					this.obstacles = new LinkedList<Coord>();
 					
-					for(i=0; i<this.var[10]; i++) {
+					for(int i=0; i<this.var[4]; i++) {
 						node = nodelist.item(i);
 						elem = (Element) node;
 						
 						xi = Integer.parseInt(elem.getAttribute("xpos"));
 						yi = Integer.parseInt(elem.getAttribute("ypos"));
-						this.obstacles.add(new Coord(xi,yi));
+						this.addObstacle(xi,yi);
 					}
 				} 
 				
 				nodelist = doc.getElementsByTagName("death");
 				node = nodelist.item(0);
 				elem = (Element) node;
-				this.var[11] = Integer.parseInt(elem.getAttribute("param"));
+				this.var[5] = Integer.parseInt(elem.getAttribute("param"));
 				nodelist = doc.getElementsByTagName("reproduction");
 				node = nodelist.item(0);
 				elem = (Element) node;
-				this.var[12] = Integer.parseInt(elem.getAttribute("param"));
+				this.var[6] = Integer.parseInt(elem.getAttribute("param"));
 				nodelist = doc.getElementsByTagName("move");
 				node = nodelist.item(0);
 				elem = (Element) node;
-				this.var[13] = Integer.parseInt(elem.getAttribute("param"));
+				this.var[7] = Integer.parseInt(elem.getAttribute("param"));
 				
 				
 			}else {
@@ -132,7 +149,7 @@ public class XML {
 		
 		//Tentar por o nome do ficheiro a entrar como argumento
 		XML parser = new XML();
-		parser.ParseXML("C:/Users/RitaC/Documents/2Âºsemestre2017_2018/POO/Projecto/data1.xml");
+		parser.ParseXML("C:/Users/RitaC/Documents/2ºsemestre2017_2018/POO/Projecto/data1.xml"); //Alterar conforme necessario - ATENCAO A ISTO E A DESFORMATACAO DE CARACTER
 		
 		//Tentar por o nome do ficheiro a entrar como argumento
 		System.out.println("Simulation");
@@ -141,20 +158,20 @@ public class XML {
 		System.out.println("maxpop= "+parser.var[2]);
 		System.out.println("comfortsens= "+parser.var[3]);
 		System.out.println("-grid= ");
-		System.out.println("colsnb= "+parser.var[4]);
-		System.out.println("rowsnb= "+parser.var[5]);
+		System.out.println("colsnb= "+parser.size.x);
+		System.out.println("rowsnb= "+parser.size.y);
 		System.out.println("-initialpoint");
-		System.out.println("xinitial= "+parser.var[6]);
-		System.out.println("yinitial= "+parser.var[7]);
+		System.out.println("xinitial= "+parser.init.x);
+		System.out.println("yinitial= "+parser.init.y);
 		System.out.println("-finalpoint");
-		System.out.println("xfinal= "+parser.var[8]);
-		System.out.println("yfinal= "+parser.var[9]);
-		System.out.println("nobs="+parser.var[10]);
+		System.out.println("xfinal= "+parser.end.x);
+		System.out.println("yfinal= "+parser.end.y);
+		System.out.println("nobs="+parser.var[4]);
 		System.out.println("-events");
-		System.out.println("death= "+parser.var[11]);
-		System.out.println("reproduction= "+parser.var[12]);
-		System.out.println("move= "+parser.var[13]);
-		System.out.println("zone: xi="+parser.zones.get(0).point1.x+" yi="+parser.zones.get(0).point1.y+" xf="+parser.zones.get(0).point2.x+" yf="+parser.zones.get(0).point2.y+" custo="+parser.zones.get(0).cost);
+		System.out.println("death= "+parser.var[5]);
+		System.out.println("reproduction= "+parser.var[6]);
+		System.out.println("move= "+parser.var[7]);
+		System.out.println("zone: xi="+parser.zones.getFirst().point1.x+" yi="+parser.zones.getFirst().point1.y+" xf="+parser.zones.getFirst().point2.x+" yf="+parser.zones.getFirst().point2.y+" custo="+parser.zones.getFirst().cost);
 		System.out.println("Obstacles xpos="+parser.obstacles.getFirst().x+" ypos="+parser.obstacles.getFirst().y);
 	}	
 
