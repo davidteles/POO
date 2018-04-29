@@ -73,11 +73,12 @@ public class Individual {
 		this.path = path;
 	}
 
-	//parametro do conforto - menor n
+	//parametro do conforto - menor nº de arestas desde a posicao atual ate a posicao final
 	public int distanceToEnd(Coord current_pos) { 
-
-		int dist_end=0;
-		dist_end= (population.fin_pos.x - current_pos.x) + (population.fin_pos.y - current_pos.y);
+		
+		int dist_end = 0;
+	
+		dist_end= (Math.abs(population.fin_pos.x - current_pos.x)) + (Math.abs(population.fin_pos.y - current_pos.y));
 		return dist_end;
 	}
 	
@@ -105,11 +106,17 @@ public class Individual {
 	}
 	
 	//Cálculo do conforto, tem erros porque ainda nao definimos k,cmax, n e m (tipo static final)
-	public float Confort (int tcost, int length, int distance) {
+	public float Confort (int cmax, int tcost, int length, int dist, int n, int m, int k) {
+		//cmax - vem do custo maximo que uma aresta pode ter - ir buscar as zonas especiais - pode ser uma variavel que se guarda logo
+		//tcost - vem do individuo
+		//length - tamanho do caminho que o individuo ja fez
+		//dist - menor nº de arestas ate ao ponto final
+		//n e m - tamanho da grid, n-x, m-y
+		//k - ir buscar a population
 		
 		int conforto=0;
 		
-		conforto= ((1-((tcost-length + 2)/((cmax-1)*length + 3)))^k) * ((1-((dist)/(n + m + 1)))^k)
+		conforto= ((1-((tcost-length + 2)/((cmax-1)*length + 3)))^k) * ((1-((dist)/(n + m + 1)))^k);
 				
 		return conforto;
 	}
