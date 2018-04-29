@@ -132,8 +132,9 @@ public class XML {
 		
 		//Tentar por o nome do ficheiro a entrar como argumento
 		XML parser = new XML();
-		parser.ParseXML("C:/Users/RitaC/Documents/2ºsemestre2017_2018/POO/Projecto/data1.xml");
+		parser.ParseXML("C:/Users/RitaC/Documents/2Âºsemestre2017_2018/POO/Projecto/data1.xml");
 		
+		//Tentar por o nome do ficheiro a entrar como argumento
 		System.out.println("Simulation");
 		System.out.println("finalinst= "+parser.var[0]);
 		System.out.println("initpop= "+parser.var[1]);
