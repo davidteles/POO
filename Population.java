@@ -35,4 +35,14 @@ public class Population {
 		this.v_max = v_max;
 	}
 	
+	
+	public Individual findID(int id) {
+		for(int aux = 0; aux<this.individuals.size() ; aux++) {
+			if(this.individuals.get(aux).getId()==id) {
+				return this.individuals.get(aux);
+			}
+		}
+		return null;
+	}
+	
 }
