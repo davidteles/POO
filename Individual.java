@@ -14,14 +14,15 @@ public class Individual {
 	Population population; //associacao a classe population - REVER associacao
 	
 	/*CONSTRUCTOR*/
-	public Individual(int Id, Coord pos) {
-		path = null; //lista inicialmente a null
-		id = Id; //id do individuo logo estabelicido assim que este e criado
-		total_cost = 0; //custo inicial e zero
-		distance = 0; //ditancia inicial e zero
-		confort = 0;//Corigir isto
-		curr_pos = pos; //posicao sera a inicial ou o local onde ele nasce
+	public Individual(Population pop, int idx, Coord pos, int cmax, int n, int m, int k) {
 		
+		this.population = pop;
+		this.path = null; //lista inicialmente a null
+		this.id = idx; //indentificacao do individuo	
+		this.total_cost = 0;//custo inicial e zero
+		this.distance = 0; //ditancia inicial e zero
+		this.confort = this.Confort(cmax, 0, 0, this.distanceToEnd(pos), n, m, k); //calculo do conforto logo assim que o individuo e criado
+		this.curr_pos = pos; //posicao sera a inicial ou o local onde ele nasce
 	}
 	
 	public int getId() {
