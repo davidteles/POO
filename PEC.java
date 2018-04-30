@@ -1,6 +1,9 @@
 package project;
 
-import java.util.PriorityQueue;;
+import java.util.PriorityQueue;
+import java.util.Comparator; 
+
+
 
 public class PEC {
 	
@@ -8,7 +11,7 @@ public class PEC {
 	 
 	 public PEC() {
 		 
-			pec = null; //lista inicialmente a null
+		 pec = new PriorityQueue<Event>(9999,new Checker()); 
 	 }
 
 	 
@@ -35,4 +38,34 @@ public class PEC {
 			
 			return this.pec.poll();
 		}
+	 
+
+	 
+	 public static void main(String[] args) {
+		 PEC pec = new PEC();
+		 pec.addMove(1, 5);
+		 pec.addDeath(1, 5);
+		 pec.addReproduction(1, 3);
+		 
+		 for(Event aux = pec.getNextEvent();aux!=null;aux=pec.getNextEvent()) {
+			 aux.realizeEvent();
+		 }
+		 
+		 
+		 
+	 }
+	 
+	 
+}
+
+class Checker implements Comparator<Event>{
+	public int compare(Event a, Event b)
+    {
+		if(a.instant<b.instant) {
+			 return -1;
+		 } else if(a.instant>b.instant) {
+			 return 1;
+		 }
+		 return 0;
+    }
 }

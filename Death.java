@@ -12,7 +12,7 @@ public class Death extends Event {
 
 
 	public void realizeEvent() {
-			
+		System.out.println("Individual "+ this.ID +" will die in instant "+ this.instant+".");
 			
 		}
 }

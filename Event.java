@@ -10,7 +10,7 @@ public abstract class Event {
 	
 	public abstract void realizeEvent();
 	
-	
+	 
 	
 	public static void main(String[] args) {
 		Move move = new Move(1,2);

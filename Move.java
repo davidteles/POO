@@ -14,7 +14,7 @@ public class Move extends Event {
 	}
 	
 	public void realizeEvent() {
-		
+		System.out.println("Individual "+ this.ID +" will move in instant "+ this.instant + " to the variable "+ this.direction+".");
 		
 	}
 	

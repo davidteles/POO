@@ -11,7 +11,7 @@ public class Reproduction extends Event {
 	}
 
 	public void realizeEvent() {
-			
+		System.out.println("Individual "+ this.ID +" will reproduce in instant "+ this.instant + ".");
 			
 		}
 }
