@@ -10,7 +10,6 @@ public class Simulation {
 	Coord size; //tamanho da grid
 	int final_instant; //instante final - variavel recebida do ficheiro (CONFIRMAR MODIFIER)
 	int curr_instant; //instante atual
-	//Coord ini_pos; //posicao inicial - recebido do ficheiro - APAGAR
 	//PEC pec;
 	LinkedList<Zone> zones; //lista de zonas especiais (com custo diferente de 1) - recebido do ficheiro (CONFIRMAR MODIFIER)
 	Population pop; //associacao a populacao 
@@ -23,10 +22,11 @@ public class Simulation {
 		this.size = size; //tamanho da grid e dado
 		this.final_instant = final_instant; //instante final dado
 		this.curr_instant = 0; //instante atual inicialmente e zero
-		//this.ini_pos = ini_pos; //posicao inicial dada
 		this.zones = zon; //lista de zonas especiais inicializada a null
+		this.pop = null;
 	}
-
+	
+	/*Funca que descobre se numa determinada coordenada existe um obstaculo*/
 	public int findObstacle(Coord input) {
 		for(int aux = 0; aux<this.obstacles.size() ; aux++) {
 			if(this.obstacles.get(aux).equals(input)) {
@@ -34,6 +34,18 @@ public class Simulation {
 			}
 		}
 		return 0;
+	}
+	
+	/*Funcao que descobre o custo maximo que uma aresta pode ter*/
+	public int FindMaxCost(){
+		int max = 1;
+		
+		for(int i=0; i<this.zones.size(); i++) {
+			if(this.zones.get(i).cost > max) {
+				max = this.zones.get(i).cost; 
+			}
+		}
+		return max;
 	}
 	
 	public static void main(String[] args) {
@@ -46,41 +58,18 @@ public class Simulation {
 		
 		sim.pop = new Population(parser.var[1], parser.var[2], parser.init, parser.end, parser.var[3], parser.var[5], parser.var[6], parser.var[7]);
 		
-		System.out.println("Simulation");
-		System.out.println("finalinst= "+sim.final_instant);
-		System.out.println("initpop= "+sim.pop.v);
-		System.out.println("maxpop= "+sim.pop.getV_max());
-		System.out.println("comfortsens= "+sim.pop.k);
-		System.out.println();
-		System.out.println("-grid");
-		System.out.println("--colsnb= "+sim.size.x);
-		System.out.println("--rowsnb= "+sim.size.y);
-		System.out.println();
-		System.out.println("-initialpoint");
-		System.out.println("--xinitial= "+sim.pop.init_pos.x);
-		System.out.println("--yinitial= "+sim.pop.init_pos.y);
-		System.out.println();
-		System.out.println("-finalpoint");
-		System.out.println("--xfinal= "+sim.pop.fin_pos.x);
-		System.out.println("--yfinal= "+sim.pop.fin_pos.y);
-		System.out.println();
-		System.out.println("-events");
-		System.out.println("--death= "+sim.pop.d_param);
-		System.out.println("--reproduction= "+sim.pop.r_param);
-		System.out.println("--move= "+sim.pop.m_param);
-		System.out.println();
-		System.out.println("-Zones list size="+parser.zones.size());
+		Population population = sim.pop;
+		population.individuals = new LinkedList<Individual>();
+		population.addIndividuals(population.v, population.init_pos, sim.FindMaxCost(), sim.size.x, sim.size.y, population.k);  
 		
-		for(int i=0; i<parser.zones.size(); i++) {
-			System.out.println("zone: xi="+parser.zones.get(i).point1.x+" yi="+parser.zones.get(i).point1.y+" xf="+parser.zones.get(i).point2.x+" yf="+parser.zones.get(i).point2.y+" custo="+parser.zones.get(i).cost);
-		}
+		System.out.println("Populacao inicial:");
+		for(int i = 0; i<population.individuals.size(); i++) {
 			
-		System.out.println();
-		System.out.println("-Obstacles list size="+parser.obstacles.size());
-		System.out.println("--nobs="+sim.nobst);
-		for(int i=0; i<parser.obstacles.size(); i++) {
-			System.out.println("Obstacles xpos="+parser.obstacles.get(i).x+" ypos="+parser.obstacles.get(i).y);
+			System.out.println("Invividuo num="+population.individuals.get(i).getId()+" tcost="+population.individuals.get(i).getTotal_cost()+" dist="+population.individuals.get(i).getDistance()+" Confort="+population.individuals.get(i).getConfort()+" pos="+population.individuals.get(i).getCurr_pos().x+" "+population.individuals.get(i).getCurr_pos().y);
+			
 		}
+		
+		
 		
 		
 	}
