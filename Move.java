@@ -119,7 +119,7 @@ public class Move extends Event {
 						cost=sim.zones.get(k).getZoneCost(individual.path.get(j), individual.path.get(j-1));
 					}
 				}
-				individual.path.removeFirst();
+				individual.path.removeLast();
 				individual.setTotal_cost(individual.getTotal_cost()-cost);
 				
 				
