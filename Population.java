@@ -35,7 +35,32 @@ public class Population {
 		this.v_max = v_max;
 	}
 	
+	/*Preenche a lista de indiviuos com todos os individuos existentes no inicio*/
+	public void addIndividuals(int v, Coord pos, int cmax, int n, int m, int k) {
+			
+		while(this.individuals.size() != v) {
+				
+				if(this.individuals.size() != 0) {
+					Individual temp = new Individual(this, this.individuals.getLast().getId()+1, pos, cmax, n, m, k);
+					this.individuals.addLast(temp);
+					
+				}else {
+					
+					Individual temp = new Individual(this, 1, pos, cmax, n, m, k);
+					this.individuals.addLast(temp);
+				}
+			}
+	}
 	
+	/*Adiciona um invividuo*/
+	public void addIndividual(Coord pos, int cmax, int n, int m, int k) {
+		
+		Individual temp = new Individual(this, this.individuals.getLast().getId()+1, pos, cmax, n, m, k);
+		this.individuals.addLast(temp);
+		
+	}
+	
+	/*Funcao que porcura o individio com um determinado ID*/
 	public Individual findID(int id) {
 		for(int aux = 0; aux<this.individuals.size() ; aux++) {
 			if(this.individuals.get(aux).getId()==id) {
