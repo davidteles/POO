@@ -28,9 +28,6 @@ public class Individual {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public int getTotal_cost() {
 		return total_cost;

@@ -27,11 +27,19 @@ public class Simulation {
 		this.zones = zon; //lista de zonas especiais inicializada a null
 	}
 
+	public int findObstacle(Coord input) {
+		for(int aux = 0; aux<this.obstacles.size() ; aux++) {
+			if(this.obstacles.get(aux).equals(input)) {
+				return 1;
+			}
+		}
+		return 0;
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		XML parser = new XML();
-		parser.ParseXML("C:/Users/RitaC/Documents/2ºsemestre2017_2018/POO/Projecto/data1.xml"); //Alterar conforme necessario - ATENCAO A ISTO E A DESFORMATACAO DE CARACTER
+		parser.ParseXML("C:/Users/RitaC/Documents/2ï¿½semestre2017_2018/POO/Projecto/data1.xml"); //Alterar conforme necessario - ATENCAO A ISTO E A DESFORMATACAO DE CARACTER
 		
 		/*Armazenamento dos dados lidos do ficheiros nas variaveis pretendidas*/
 		Simulation sim = new Simulation(parser.obstacles, parser.var[4], parser.size, parser.var[0], parser.zones);

@@ -13,6 +13,7 @@ public class Death extends Event {
 
 	public void realizeEvent(Simulation sim) {
 		System.out.println("Individual "+ this.ID +" will die in instant "+ this.instant+".");
-			
+		Individual temp = sim.pop.findID(this.ID);
+		sim.pop.individuals.remove(temp);
 		}
 }
