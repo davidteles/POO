@@ -42,6 +42,18 @@ public class Zone {
 		return 1;
 	}
 	
+	
+	public int getZoneCost(Coord cur_point, Coord next_point){
+		int value_1 = this.Intersection(cur_point);
+		int value_2 = this.Intersection(next_point);
+		
+		
+		if(value_1 <= value_2) {
+			return value_1;
+		} else {
+			return value_2;
+		}
+	}
 	/*Main para tester zonas*/
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
