@@ -48,7 +48,7 @@ public class PEC {
 		 pec.addReproduction(1, 3);
 		 
 		 for(Event aux = pec.getNextEvent();aux!=null;aux=pec.getNextEvent()) {
-			 aux.realizeEvent();
+			 //aux.realizeEvent();
 		 }
 		 
 		 

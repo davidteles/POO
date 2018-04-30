@@ -11,7 +11,7 @@ public class Death extends Event {
 
 
 
-	public void realizeEvent() {
+	public void realizeEvent(Simulation sim) {
 		System.out.println("Individual "+ this.ID +" will die in instant "+ this.instant+".");
 			
 		}

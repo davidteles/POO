@@ -10,7 +10,7 @@ public class Reproduction extends Event {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void realizeEvent() {
+	public void realizeEvent(Simulation sim) {
 		System.out.println("Individual "+ this.ID +" will reproduce in instant "+ this.instant + ".");
 			
 		}

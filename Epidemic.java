@@ -20,7 +20,7 @@ public class Epidemic extends Event {
 
 
 
-	public void realizeEvent() {
+	public void realizeEvent(Simulation sim) {
 			
 			
 		}

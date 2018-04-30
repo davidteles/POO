@@ -8,7 +8,7 @@ public abstract class Event {
 		this.instant = instant;
 	}
 	
-	public abstract void realizeEvent();
+	public abstract void realizeEvent(Simulation sim);
 	
 	 
 	

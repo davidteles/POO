@@ -13,7 +13,7 @@ public class Move extends Event {
 		this.direction = random.nextFloat();
 	}
 	
-	public void realizeEvent() {
+	public void realizeEvent(Simulation sim) {
 		System.out.println("Individual "+ this.ID +" will move in instant "+ this.instant + " to the variable "+ this.direction+".");
 		
 	}
