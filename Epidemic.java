@@ -10,8 +10,8 @@ public class Epidemic extends Event {
 	
 	
 	
-	public Epidemic(int iD, int instant) {
-		super(iD, instant);
+	public Epidemic(int instant) {
+		super(instant);
 		Random random = new Random();
 		this.threshold = random.nextFloat();
 	}
