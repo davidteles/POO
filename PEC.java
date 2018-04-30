@@ -1,5 +1,7 @@
 package project;
 
+import java.util.PriorityQueue;;
+
 public class PEC {
 	
 	 PriorityQueue<Event> pec;
@@ -12,25 +14,25 @@ public class PEC {
 	 
 	 public void addMove(int id, int instant) {
 			
-		Move mov = new Move();
+		Move mov = new Move(id,instant);
 		this.pec.add(mov);
 	 }
 	 
 	 public void addReproduction(int id, int instant) {
 			
-		Reproduction rep = new Reproduction();
+		Reproduction rep = new Reproduction(id,instant);
 		this.pec.add(rep);
 	 }
 	 
 	 public void addDeath(int id, int instant) {
 			
-		Death dea = new Death();
+		Death dea = new Death(id,instant);
 		this.pec.add(dea);
 	 }
 	 
 	 
-	 public void removeEvent() {
+	 public Event getNextEvent() {
 			
-			this.pec.poll();
+			return this.pec.poll();
 		}
 }
