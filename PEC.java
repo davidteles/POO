@@ -39,12 +39,7 @@ public class PEC {
 			this.pec.add(update);
 		 }
 	 
-	 
-	 public void addFinalUpdate(int instant) {
-			
-			FinalUpdate update = new FinalUpdate(instant);
-			this.pec.add(update);
-		 }
+
 	 
 	 public Event getNextEvent() {
 			

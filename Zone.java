@@ -27,7 +27,7 @@ public class Zone {
 		} else if(point2.equals(input)) {
 			//System.out.println("Equal to point 2");
 			return cost;
-		} else if(input.x>=point1.x && input.x<=point2.x){
+		} else if(input.x==point1.x || input.x==point2.x){
 			if(point1.y<point2.y) {
 				if(input.y>=point1.y && input.y<=point2.y) {
 					return cost;
@@ -37,6 +37,12 @@ public class Zone {
 					return cost;
 				}
 			}
+		}  else if(input.y==point1.y || input.y==point2.y){
+			
+			if(input.x>=point1.y && input.x<=point2.y) {
+				return cost;
+			}
+			
 		}
 		
 		return 1;
