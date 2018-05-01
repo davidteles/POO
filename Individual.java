@@ -118,4 +118,37 @@ public class Individual {
 				
 		return conforto;
 	}
+	
+	public float CalculateDeath (float confort, int d_param) {
+		
+		float media=0;
+		Random random=new Random();
+		double next= random.nextDouble();
+		
+		media = (1-Math.log(1-confort))d_param;
+		
+		return -media*Math.log(1-next);		
+	}
+
+	public float CalculateNewMove (float confort, int m_param) {
+	
+		float media=0;
+		Random random=new Random();
+		double next= random.nextDouble();
+		
+		media = (1-Math.log(confort))m_param;
+		
+		return -media*Math.log(1-next);
+	}
+
+	public float CalculateNewReproduction (float confort, int r_param) {
+	
+		float media=0;
+		Random random=new Random();
+		double next= random.nextDouble();
+		
+		media = (1-Math.log(confort))r_param;
+		
+		return -media*Math.log(1-next);
+	}
 }
