@@ -13,9 +13,13 @@ public class Simulation {
 	PEC pec;
 	LinkedList<Zone> zones; //lista de zonas especiais (com custo diferente de 1) - recebido do ficheiro (CONFIRMAR MODIFIER)
 	Population pop; //associacao a populacao 
+	LinkedList<Coord> bestpath;
+	int bestcost;
 	
 	/*CONSTRUCTOR*/
 	public Simulation(LinkedList<Coord> obs, int nobs, Coord size, int final_instant, LinkedList<Zone> zon) {
+		this.bestpath = new LinkedList<Coord>();
+		this.bestcost = 0;
 		this.pec = new PEC();
 		this.obstacles = obs; //lista de obstaculos e inicializada a null
 		this.nobst = nobs; //numero de obstaculos
@@ -24,6 +28,7 @@ public class Simulation {
 		this.curr_instant = 0; //instante atual inicialmente e zero
 		this.zones = zon; //lista de zonas especiais inicializada a null
 		this.pop = null;
+		
 	}
 	
 	/*Funca que descobre se numa determinada coordenada existe um obstaculo*/

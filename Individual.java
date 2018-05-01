@@ -1,6 +1,8 @@
 package project;
 
 import java.util.LinkedList;
+import java.util.Random;
+
 
 public class Individual {
 	
@@ -119,36 +121,41 @@ public class Individual {
 		return conforto;
 	}
 	
-	public float CalculateDeath (float confort, int d_param) {
+	public int calculateDeath (float confort, int d_param) {
 		
-		float media=0;
+		int instance;
+		double media;
 		Random random=new Random();
 		double next= random.nextDouble();
 		
-		media = (1-Math.log(1-(double)confort))d_param;
-		
-		return -media*Math.log(1-next);		
+		media = ((1-Math.log(1-(double)confort))*d_param);
+		instance = (int) Math.floor((-media*Math.log(1-next)));
+		return instance;		
 	}
 
-	public float CalculateNewMove (float confort, int m_param) {
+	public int calculateNewMove (float confort, int m_param) {
 	
-		float media=0;
+		int instance;
+		double media;
 		Random random=new Random();
 		double next= random.nextDouble();
 		
-		media = (1-Math.log((double)confort))m_param;
-		
-		return -media*Math.log(1-next);
+		media = (1-Math.log((double)confort))*m_param;
+		instance = (int) Math.floor((-media*Math.log(1-next)));
+		return instance;		
 	}
 
-	public float CalculateNewReproduction (float confort, int r_param) {
+	public int calculateNewReproduction (float confort, int r_param) {
 	
-		float media=0;
+		int instance;
+		double media;
+		
 		Random random=new Random();
 		double next= random.nextDouble();
 		
-		media = (1-Math.log((double)confort))r_param;
+		media = (1-Math.log((double)confort))*r_param;
 		
-		return -media*Math.log(1-next);
+		instance = (int) Math.floor((-media*Math.log(1-next)));
+		return instance;		
 	}
 }
