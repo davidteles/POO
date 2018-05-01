@@ -67,7 +67,7 @@ public class Reproduction extends Event {
 		//Definir epidemia
 		if(sim.pop.v > sim.pop.getV_max()) {
 			
-			Event eve= new Epidemic(0); 
+			Event eve= new Epidemic(sim.curr_instant); 
 			sim.numberofevents++;
 			eve.realizeEvent(sim);
 		}
