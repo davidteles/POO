@@ -65,7 +65,7 @@ public class Simulation {
 		
 		Population population = sim.pop;
 		population.individuals = new LinkedList<Individual>();
-		population.addIndividuals(population.v, population.init_pos, sim.FindMaxCost(), sim.size.x, sim.size.y, population.k);  
+		population.addIndividuals(population.v, population.init_pos, sim.FindMaxCost(), sim.size.x, sim.size.y);   
 		
 		System.out.println("Populacao inicial:");
 		for(int i = 0; i<population.individuals.size(); i++) {
