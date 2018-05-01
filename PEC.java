@@ -11,7 +11,7 @@ public class PEC {
 	 
 	 public PEC() {
 		 
-		 pec = new PriorityQueue<Event>(9999,new Checker()); 
+		 pec = new PriorityQueue<Event>(99999,new Checker()); 
 	 }
 
 	 

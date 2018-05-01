@@ -10,13 +10,13 @@ public class Simulation {
 	Coord size; //tamanho da grid
 	int final_instant; //instante final - variavel recebida do ficheiro (CONFIRMAR MODIFIER)
 	int curr_instant; //instante atual
-	//PEC pec;
+	PEC pec;
 	LinkedList<Zone> zones; //lista de zonas especiais (com custo diferente de 1) - recebido do ficheiro (CONFIRMAR MODIFIER)
 	Population pop; //associacao a populacao 
 	
 	/*CONSTRUCTOR*/
 	public Simulation(LinkedList<Coord> obs, int nobs, Coord size, int final_instant, LinkedList<Zone> zon) {
-		
+		this.pec = new PEC();
 		this.obstacles = obs; //lista de obstaculos e inicializada a null
 		this.nobst = nobs; //numero de obstaculos
 		this.size = size; //tamanho da grid e dado

@@ -127,8 +127,10 @@ public class Move extends Event {
 			individual.setCurr_pos(next);
 		}
 		
+		individual.Confort(sim.FindMaxCost(), n, m, k);
 		
 		
+		sim.pec.addMove(individual.ID, individual.calculateNewMove(individual.getConfort(),sim.pop.m_param));
 		
 	}
 	
