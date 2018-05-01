@@ -34,7 +34,9 @@ public class Population {
 	public void setV_max(int v_max) {
 		this.v_max = v_max;
 	}
-	
+	public void setV(int v) {
+		this.v = v;
+	}
 	/*Preenche a lista de indiviuos com todos os individuos existentes no inicio*/
 	public void addIndividuals(int v, Coord pos, int cmax, int n, int m) {
 			

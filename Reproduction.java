@@ -19,9 +19,9 @@ public class Reproduction extends Event {
 			return;
 		}	
 		
-		int dist_filho= Math.floor(individual.getDistance()*(0.9+0.1*(individual.getConfort())));
+		int dist_filho= (int) Math.floor(individual.getDistance()*(0.9+0.1*(individual.getConfort())));
 		
-		int filhoID= (sim.pop.getLast().getID())+1;
+		int filhoID= (sim.pop.individuals.getLast().getId())+1;
 		Individual filho= new Individual(sim.pop, filhoID, individual.path.get(dist_filho-1) );
 		
 		//definir coordenanda
@@ -30,23 +30,27 @@ public class Reproduction extends Event {
 		
 		filho.path.clear();
 		filho.path.addLast(individual.path.get(0));
-
+		int cost=1;
 		for(int i=1; i<dist_filho; i++) {
 			
 			filho.path.addLast(individual.path.get(i));
-			filho.setTotal_cost(filho.getTotal_cost+sim.zones.getZoneCost(filho.path.get(i-1),filho.path.getZoneCost(i)));
+			for(int k=0;k<sim.zones.size();k++) {
+				if(cost<sim.zones.get(k).getZoneCost(individual.path.get(i-1), individual.path.get(i))) {
+					cost=sim.zones.get(k).getZoneCost(individual.path.get(i-1), individual.path.get(i));
+				}
+			filho.setTotal_cost(filho.getTotal_cost()+cost);
 		}
 		
-		filho.Confort(sim.FindMaxCost, sim.size.x, sim.size.y, sim.pop.k);
+		filho.Confort(sim.FindMaxCost(), sim.size.x, sim.size.y, sim.pop.k);
 		
 		//adicionar indivíduo
-		sim.pop.addIndividual(filho.curr_pos,sim.FindMaxCost(),sim.size.x, sim.size.y, sim.pop.k);
+		sim.pop.addIndividual(filho.getCurr_pos(),sim.FindMaxCost(),sim.size.x, sim.size.y, sim.pop.k);
 		
 		int nexttime_mfilho = individual.calculateNewMove(individual.getConfort(),sim.pop.r_param)+sim.curr_instant;
 		int nexttime_rfilho = individual.calculateNewReproduction(individual.getConfort(),sim.pop.r_param)+sim.curr_instant;
 		
-		sim.pec.addMove(filhoID, sim.curr_intant + nexttime_mfilho);
-		sim.pec.addReproduction(filhoID, sim.curr_intant + nexttime_rfilho);
+		sim.pec.addMove(filhoID, sim.curr_instant + nexttime_mfilho);
+		sim.pec.addReproduction(filhoID, sim.curr_instant + nexttime_rfilho);
 		//mudar tamanho da população
 		
 		sim.pop.setV((sim.pop.v)+1);
@@ -64,7 +68,7 @@ public class Reproduction extends Event {
 		if(sim.pop.v > sim.pop.getV_max()) {
 			
 			Event eve= new Epidemic(0); 
-			
+			sim.numberofevents++;
 			eve.realizeEvent(sim);
 		}
 	}

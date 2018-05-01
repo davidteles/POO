@@ -169,4 +169,6 @@ public class Individual {
 		instance = (int) Math.floor((-media*Math.log(1-next)));
 		return instance;		
 	}
+
+
 }
