@@ -85,6 +85,7 @@ public class Simulation {
 		//Run da PEC
 		for(Event aux = sim.pec.getNextEvent();aux!=null;aux=sim.pec.getNextEvent()) {
 			 aux.realizeEvent(sim);
+			sim.numberofevents++;
 		 }
 
 		
