@@ -28,6 +28,11 @@ public class StatusUpdate extends Event {
 			
 			System.out.println("Cost/Comfort:					"+sim.bestcost);
 		}
+		
+		
+		if(this.instant>=sim.final_instant) {
+			System.exit(1);
+		}
 
 	}
 
