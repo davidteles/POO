@@ -2,6 +2,8 @@ package project;
 
 public class Coord {
 	
+	
+
 	/*FIELDS*/
 	public int x,y;
 	
@@ -16,6 +18,11 @@ public class Coord {
 		y=b;
 	}
 
+	@Override
+	public String toString() {
+		return "(" + x + "," + y + ")";
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
