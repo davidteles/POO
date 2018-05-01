@@ -72,7 +72,7 @@ public class Simulation {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		XML parser = new XML();
-		parser.ParseXML("C:/Users/RitaC/Documents/2ï¿½semestre2017_2018/POO/Projecto/data1.xml"); //Alterar conforme necessario - ATENCAO A ISTO E A DESFORMATACAO DE CARACTER
+		parser.ParseXML("C:/Users/RitaC/Documents/2ºsemestre2017_2018/POO/Projecto/data1.xml"); //Alterar conforme necessario - ATENCAO A ISTO E A DESFORMATACAO DE CARACTER
 		
 		/*Armazenamento dos dados lidos do ficheiros nas variaveis pretendidas*/
 		Simulation sim = new Simulation(parser.obstacles, parser.var[4], parser.size, parser.var[0], parser.zones);
@@ -93,7 +93,7 @@ public class Simulation {
 		}
 		
 		for(int i = 1; i<=20; i++) {
-			sim.pec.addStatusUpdate(i*((int)(sim.curr_instant/20)));
+			sim.pec.addStatusUpdate(i*((int)(sim.final_instant/20)));
 		}
 		
 		//Run da PEC

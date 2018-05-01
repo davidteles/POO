@@ -141,7 +141,7 @@ public class Individual {
 		
 		media = ((1-Math.log(1-(double)confort))*d_param);
 		instance = (int) Math.floor((-media*Math.log(1-next)));
-		return instance;		
+		return -instance;		
 	}
 
 	public int calculateNewMove (float confort, int m_param) {
@@ -153,7 +153,7 @@ public class Individual {
 		
 		media = (1-Math.log((double)confort))*m_param;
 		instance = (int) Math.floor((-media*Math.log(1-next)));
-		return instance;		
+		return -instance;		
 	}
 
 	public int calculateNewReproduction (float confort, int r_param) {
@@ -167,7 +167,7 @@ public class Individual {
 		media = (1-Math.log((double)confort))*r_param;
 		
 		instance = (int) Math.floor((-media*Math.log(1-next)));
-		return instance;		
+		return -instance;		
 	}
 
 

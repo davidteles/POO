@@ -19,9 +19,13 @@ public class Reproduction extends Event {
 			return;
 		}	
 		
-		int dist_filho= (int) Math.floor(individual.getDistance()*(0.9+0.1*(individual.getConfort())));
+		int dist_filho= (int) Math.ceil(individual.getDistance()*(0.9+0.1*(individual.getConfort())));
 		
 		int filhoID= (sim.pop.individuals.getLast().getId())+1;
+		
+	/*	if(dist_filho == 0) {
+			dist_filho = 1;
+		}*/
 		Individual filho= new Individual(sim.pop, filhoID, individual.path.get(dist_filho-1) );
 		
 		//definir coordenanda
@@ -43,7 +47,7 @@ public class Reproduction extends Event {
 		
 		filho.Confort(sim.FindMaxCost(), sim.size.x, sim.size.y, sim.pop.k);
 		
-		//adicionar indivíduo
+		//adicionar individuo
 		sim.pop.addIndividual(filho.getCurr_pos(),sim.FindMaxCost(),sim.size.x, sim.size.y, sim.pop.k);
 		
 		int nexttime_mfilho = individual.calculateNewMove(individual.getConfort(),sim.pop.r_param)+sim.curr_instant;
@@ -51,7 +55,7 @@ public class Reproduction extends Event {
 		
 		sim.pec.addMove(filhoID, sim.curr_instant + nexttime_mfilho);
 		sim.pec.addReproduction(filhoID, sim.curr_instant + nexttime_rfilho);
-		//mudar tamanho da população
+		//mudar tamanho da populacao
 		
 		sim.pop.setV((sim.pop.v)+1);
 		
