@@ -132,7 +132,7 @@ public class Move extends Event {
 			individual.setCurr_pos(next);
 		}
 		
-		//Atualizar conforto
+		//Atualizar conforto TODO
 		//individual.Confort(sim.FindMaxCost(), n, m, k);
 		
 		int nexttime = individual.calculateNewMove(individual.getConfort(),sim.pop.m_param)+sim.curr_instant;
