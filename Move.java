@@ -23,7 +23,7 @@ public class Move extends Event {
 		}
 		int n_value = 0;
 		Coord next;
-		int[] n = new int[3];
+		int[] n = new int[4];
 		Coord curr = individual.getCurr_pos();
 		Coord aux = new Coord(0,0);
 		
