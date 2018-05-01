@@ -22,9 +22,9 @@ public class Epidemic extends Event {
 
 	public void realizeEvent(Simulation sim) {
 			
-		public void realizeEvent(Simulation sim) {
+	
 		
-		int []confort=confort[sim.pop.individuals.size()];
+		float[] confort = new float[sim.pop.individuals.size()];
 		
 		for(int j=0; j<sim.pop.individuals.size(); j++) {
 			
@@ -35,22 +35,22 @@ public class Epidemic extends Event {
 			
 			if(sim.pop.individuals.get(i).getConfort()>=confort[i]) {
 				
-				confort[i]=sim.pop.individuals.get(i).getConfort;
+				confort[i]=sim.pop.individuals.get(i).getConfort();
 						
 					for(int z=i+1; z<sim.pop.individuals.size(); z++) {
 							
-						confort[z]=conforto[z-1];
+						confort[z]=confort[z-1];
 					}
 				}		
 			}
 		
-		for(j=5; j<sim.pop.individuals.size(); j++) {
+		for(int j=5; j<sim.pop.individuals.size(); j++) {
 			
 			if(confort[j] < this.threshold) {
 				
 				for(int w=0; w<=sim.pop.individuals.size(); w++) {
 				  
-					if(confort[j]==sim.pop.individuals.get(w).getComfort()) {
+					if(confort[j]==sim.pop.individuals.get(w).getConfort()) {
 					  
 					  sim.pop.individuals.remove(w);
 					  continue;
@@ -60,6 +60,7 @@ public class Epidemic extends Event {
 				
 			}
 		}
-						
-	}		
+		
+	}
+			
 }
