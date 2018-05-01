@@ -14,13 +14,15 @@ public class StatusUpdate extends Event {
 		System.out.println("Population size:				"+sim.pop.v);
 		if(sim.bestcost==0) {
 			System.out.println("Final point has been hit:		NO");
-			System.out.println("Path of the best fit individual:{");//TODO
-			
-			
-			
+			System.out.println("Path of the best fit individual:{");
+			Individual aux = sim.getMoreConfortable();
+			System.out.print(","+aux.path.get(0).toString());
+			for(int i=1;i<aux.path.size();i++) {
+				System.out.print(","+aux.path.get(i).toString());
+			}
 			System.out.print("}");
 			
-			System.out.println("Cost/Comfort:					");//TODO
+			System.out.println("Cost/Comfort:					"+aux.getConfort());
 		} else {
 			System.out.println("Final point has been hit:		YES");
 			System.out.println("Path of the best fit individual:{");

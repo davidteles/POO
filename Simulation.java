@@ -55,6 +55,20 @@ public class Simulation {
 		return max;
 	}
 	
+	
+	public Individual getMoreConfortable() {
+		Individual aux = null;
+		for(int i=0;i<this.pop.individuals.size();i++) {
+			if(aux==null) {
+				aux=this.pop.individuals.get(i);
+			} else if(aux.getConfort()<this.pop.individuals.get(i).getConfort()){
+				aux=this.pop.individuals.get(i);
+			}
+		}
+		
+		return aux;
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		XML parser = new XML();
