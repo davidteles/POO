@@ -112,7 +112,7 @@ public class Individual {
 		//n e m - tamanho da grid, n-x, m-y
 		//k - ir buscar a population
 		
-		int conforto=0;
+		float conforto=0;
 		
 		conforto= ((1-((tcost-length + 2)/((cmax-1)*length + 3)))^k) * ((1-((dist)/(n + m + 1)))^k);
 				
@@ -125,7 +125,7 @@ public class Individual {
 		Random random=new Random();
 		double next= random.nextDouble();
 		
-		media = (1-Math.log(1-confort))d_param;
+		media = (1-Math.log(1-(double)confort))d_param;
 		
 		return -media*Math.log(1-next);		
 	}
@@ -136,7 +136,7 @@ public class Individual {
 		Random random=new Random();
 		double next= random.nextDouble();
 		
-		media = (1-Math.log(confort))m_param;
+		media = (1-Math.log((double)confort))m_param;
 		
 		return -media*Math.log(1-next);
 	}
@@ -147,7 +147,7 @@ public class Individual {
 		Random random=new Random();
 		double next= random.nextDouble();
 		
-		media = (1-Math.log(confort))r_param;
+		media = (1-Math.log((double)confort))r_param;
 		
 		return -media*Math.log(1-next);
 	}
