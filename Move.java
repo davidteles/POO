@@ -16,6 +16,7 @@ public class Move extends Event {
 	
 	@SuppressWarnings("unchecked")
 	public void realizeEvent(Simulation sim) {
+		sim.curr_instant=this.instant;
 		System.out.println("Individual "+ this.ID +" will move in instant "+ this.instant + " to the variable "+ this.direction+".");
 		Individual individual = sim.pop.findID(this.ID);
 		if (individual==null) {
