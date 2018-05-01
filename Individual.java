@@ -16,15 +16,25 @@ public class Individual {
 	Population population; //associacao a classe population - REVER associacao
 	
 	/*CONSTRUCTOR*/
-	public Individual(Population pop, int idx, Coord pos, int cmax, int n, int m, int k) {
+	public Individual(Population pop, int idx, Coord pos) {
 		
 		this.population = pop;
-		this.path = null; //lista inicialmente a null
+		this.path = new LinkedList<Coord>(); //lista inicialmente a null
+		this.path.addLast(pos);
 		this.id = idx; //indentificacao do individuo	
 		this.total_cost = 0;//custo inicial e zero
 		this.distance = 0; //ditancia inicial e zero
-		this.confort = this.Confort(cmax, 0, 0, this.distanceToEnd(pos), n, m, k); //calculo do conforto logo assim que o individuo e criado
+		this.confort = 0; //calculo do conforto logo assim que o individuo e criado
 		this.curr_pos = pos; //posicao sera a inicial ou o local onde ele nasce
+	}
+	
+	public void SetComfortDistance(int cmax, int n, int m) {
+		
+		int dist = this.path.size()-1;
+		float comf = this.Confort(cmax, n, m, this.population.k);
+		
+		this.setConfort(comf);
+		this.setDistance(dist);
 	}
 	
 	public int getId() {
@@ -78,7 +88,7 @@ public class Individual {
 		
 		int dist_end = 0;
 	
-		dist_end= (Math.abs(population.fin_pos.x - current_pos.x)) + (Math.abs(population.fin_pos.y - current_pos.y));
+		dist_end= (Math.abs(this.population.fin_pos.x- current_pos.x) + Math.abs(this.population.fin_pos.y - current_pos.y));
 		return dist_end;
 	}
 	
@@ -106,7 +116,7 @@ public class Individual {
 	}
 	
 	//calculo do conforto, tem erros porque ainda nao definimos k,cmax, n e m (tipo static final)
-	public float Confort (int cmax, int tcost, int length, int dist, int n, int m, int k) {
+	public float Confort (int cmax, int n, int m, int k) {
 		//cmax - vem do custo maximo que uma aresta pode ter - ir buscar as zonas especiais - pode ser uma variavel que se guarda logo
 		//tcost - vem do individuo
 		//length - tamanho do caminho que o individuo ja fez
@@ -115,8 +125,9 @@ public class Individual {
 		//k - ir buscar a population
 		
 		float conforto=0;
+		int dist = this.distanceToEnd(this.getCurr_pos());
 		
-		conforto= ((1-((tcost-length + 2)/((cmax-1)*length + 3)))^k) * ((1-((dist)/(n + m + 1)))^k);
+		conforto= ((1-((this.getTotal_cost()-this.getDistance() + 2)/((cmax-1)*this.getDistance() + 3)))^k) * ((1-((dist)/(n + m + 1)))^k);
 				
 		return conforto;
 	}
