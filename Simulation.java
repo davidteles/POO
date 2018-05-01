@@ -15,11 +15,13 @@ public class Simulation {
 	Population pop; //associacao a populacao 
 	LinkedList<Coord> bestpath;
 	int bestcost;
+	int numberofevents;
 	
 	/*CONSTRUCTOR*/
 	public Simulation(LinkedList<Coord> obs, int nobs, Coord size, int final_instant, LinkedList<Zone> zon) {
 		this.bestpath = new LinkedList<Coord>();
 		this.bestcost = 0;
+		this.numberofevents=0;
 		this.pec = new PEC();
 		this.obstacles = obs; //lista de obstaculos e inicializada a null
 		this.nobst = nobs; //numero de obstaculos
