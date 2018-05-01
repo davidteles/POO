@@ -69,15 +69,24 @@ public class Simulation {
 		population.individuals = new LinkedList<Individual>();
 		population.addIndividuals(population.v, population.init_pos, sim.FindMaxCost(), sim.size.x, sim.size.y);   
 		
-		System.out.println("Populacao inicial:");
+		//Adicionar os primeiros eventos a PEC
 		for(int i = 0; i<population.individuals.size(); i++) {
+			Individual ind = population.individuals.get(i); 
 			
-			System.out.println("Invividuo num="+population.individuals.get(i).getId()+" tcost="+population.individuals.get(i).getTotal_cost()+" dist="+population.individuals.get(i).getDistance()+" Confort="+population.individuals.get(i).getConfort()+" pos="+population.individuals.get(i).getCurr_pos().x+" "+population.individuals.get(i).getCurr_pos().y);
-			
+			sim.pec.addDeath(i+1, ind.calculateDeath(ind.getConfort(), population.d_param));
+			sim.pec.addMove(i+1, ind.calculateNewMove(ind.getConfort(), population.m_param));
+			sim.pec.addReproduction(i+1, ind.calculateNewReproduction(ind.getConfort(), population.r_param));	
 		}
 		
+		for(int i = 1; i<=20; i++) {
+			sim.pec.addStatusUpdate(i*((int)(sim.curr_instant/20)));
+		}
 		
-		
+		//Run da PEC
+		for(Event aux = sim.pec.getNextEvent();aux!=null;aux=sim.pec.getNextEvent()) {
+			 aux.realizeEvent(sim);
+		 }
+
 		
 	}
 
