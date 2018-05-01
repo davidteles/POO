@@ -36,26 +36,30 @@ public class Population {
 	}
 	
 	/*Preenche a lista de indiviuos com todos os individuos existentes no inicio*/
-	public void addIndividuals(int v, Coord pos, int cmax, int n, int m, int k) {
+	public void addIndividuals(int v, Coord pos, int cmax, int n, int m) {
 			
 		while(this.individuals.size() != v) {
 				
 				if(this.individuals.size() != 0) {
-					Individual temp = new Individual(this, this.individuals.getLast().getId()+1, pos, cmax, n, m, k);
+					Individual temp = new Individual(this, this.individuals.getLast().getId()+1, pos);
+					temp.SetComfortDistance(cmax, n, m);
 					this.individuals.addLast(temp);
 					
 				}else {
 					
-					Individual temp = new Individual(this, 1, pos, cmax, n, m, k);
+					Individual temp = new Individual(this, 1, pos);
+					temp.SetComfortDistance(cmax, n, m);
 					this.individuals.addLast(temp);
 				}
 			}
 	}
 	
+	
 	/*Adiciona um invividuo*/
 	public void addIndividual(Coord pos, int cmax, int n, int m, int k) {
 		
-		Individual temp = new Individual(this, this.individuals.getLast().getId()+1, pos, cmax, n, m, k);
+		Individual temp = new Individual(this, this.individuals.getLast().getId()+1, pos);
+		temp.SetComfortDistance(cmax, n, m);
 		this.individuals.addLast(temp);
 		
 	}
