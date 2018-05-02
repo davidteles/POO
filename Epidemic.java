@@ -12,20 +12,22 @@ public class Epidemic extends Event {
 	}
 
 	public void realizeEvent(Simulation sim) {
-			
+		Random random = new Random();
 		LinkedList<Individual> ind; 
 		
 		ind = sim.pop.individuals;
 		Comparator<Individual> cmp1 = new ConfortComparator(); //comparador de conforto na lista
 		
 		Collections.sort(ind, cmp1); //ordena a lista consoante o conforto (ordem descrescente)
-		
+		float threshold;
 		//seleccao dos individuos, com menor conforto, que vao morrer
 		for(int i=5; i<ind.size(); i++) {
-			Random random = new Random();
+			threshold = random.nextFloat();
 			
-			if(random.nextFloat()>ind.get(i).getConfort()) {
-				ind.remove(i); //removo o individuo que morreu da lista
+			if(threshold>ind.get(i).getConfort()) {
+				sim.pop.setV(sim.pop.v-1);
+				//System.out.println("the individual "+ind.get(i).getId()+" Is Now Dead because is comfort was "+ind.get(i).getConfort()+" and the random was "+threshold);
+				sim.pop.individuals.remove(ind.get(i)); //removo o individuo que morreu da lista
 			}
 		}
 		
@@ -33,7 +35,7 @@ public class Epidemic extends Event {
 		
 		Collections.sort(ind, cmp2); //volta a ordenar a lista pelos IDs (ordem crescente)
 		
-		sim.pop.v = ind.size(); //actualiza o numero de individuos que constituem a populacao actual
+		sim.pop.v = sim.pop.individuals.size(); //actualiza o numero de individuos que constituem a populacao actual
 		
 	}
 				

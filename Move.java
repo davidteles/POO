@@ -1,6 +1,6 @@
 package project;
 
-import java.util.LinkedList;
+
 import java.util.Random;
 
 public class Move extends Event {
@@ -14,9 +14,15 @@ public class Move extends Event {
 		this.direction = random.nextFloat();
 	}
 	
-	@SuppressWarnings("unchecked")
+
 	public void realizeEvent(Simulation sim) {
 		sim.curr_instant=this.instant;
+		if(sim.pop.v > sim.pop.getV_max()) {
+			//System.out.println("Epidemic!");
+			Event eve= new Epidemic(sim.curr_instant); 
+			sim.numberofevents++;
+			eve.realizeEvent(sim);
+		}
 		//System.out.println("Individual "+ this.ID +" will move in instant "+ this.instant+".");
 		Individual individual = sim.pop.findID(this.ID);
 		if (individual==null) {
@@ -162,11 +168,16 @@ public class Move extends Event {
 		}
 		
 		
-		
+		//System.out.println(individual.getCurr_pos().toString() + sim.pop.fin_pos.toString());
 		if(individual.getCurr_pos().equals(sim.pop.fin_pos)) {
 			if(sim.bestcost==0 || sim.bestcost>individual.getTotal_cost()) {
 				sim.bestpath.clear();
-				sim.bestpath = (LinkedList<Coord>) individual.path.clone();
+				for(i=0;i<individual.path.size();i++) {
+					sim.bestpath.add(individual.path.get(i));
+						
+				}
+				
+				
 				sim.bestcost=individual.getTotal_cost();
 			}
 		}
