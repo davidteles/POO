@@ -13,24 +13,27 @@ public class Epidemic extends Event {
 
 	public void realizeEvent(Simulation sim) {
 			
-		LinkedList<Individual> ind;
+		LinkedList<Individual> ind; 
 		
 		ind = sim.pop.individuals;
-		Comparator<Individual> cmp1 = new ConfortComparator();
+		Comparator<Individual> cmp1 = new ConfortComparator(); //comparador de conforto na lista
 		
-		Collections.sort(ind, cmp1);
+		Collections.sort(ind, cmp1); //ordena a lista consoante o conforto (ordem descrescente)
 		
-		for(int i=0; i<ind.size(); i++) {
+		//seleccao dos individuos, com menor conforto, que vao morrer
+		for(int i=5; i<ind.size(); i++) {
 			Random random = new Random();
 			
 			if(random.nextFloat()>ind.get(i).getConfort()) {
-				ind.remove(i);
+				ind.remove(i); //removo o individuo que morreu da lista
 			}
 		}
 		
 		Comparator<Individual> cmp2 = new IdComparator();
 		
-		Collections.sort(ind, cmp2);
+		Collections.sort(ind, cmp2); //volta a ordenar a lista pelos IDs (ordem crescente)
+		
+		sim.pop.v = ind.size(); //actualiza o numero de individuos que constituem a populacao actual
 		
 	}
 				
@@ -39,9 +42,9 @@ public class Epidemic extends Event {
 class ConfortComparator implements Comparator<Individual>{
 	public int compare(Individual a, Individual b)
     {
-		if(a.getConfort()<b.getConfort()) {
+		if(a.getConfort()>b.getConfort()) {
 			 return -1;
-		 } else if(a.getConfort()>b.getConfort()) {
+		 } else if(a.getConfort()<b.getConfort()) {
 			 return 1;
 		 }
 		 return 0;
