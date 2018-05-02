@@ -17,10 +17,10 @@ public class Move extends Event {
 	@SuppressWarnings("unchecked")
 	public void realizeEvent(Simulation sim) {
 		sim.curr_instant=this.instant;
-		System.out.println("Individual "+ this.ID +" will move in instant "+ this.instant+".");
+		//System.out.println("Individual "+ this.ID +" will move in instant "+ this.instant+".");
 		Individual individual = sim.pop.findID(this.ID);
 		if (individual==null) {
-			System.out.println("Indiviual "+this.ID + " is already dead.");
+			//System.out.println("Indiviual "+this.ID + " is already dead.");
 			return;
 		}
 		
@@ -102,7 +102,7 @@ public class Move extends Event {
 		}else {
 			next = new Coord(curr.x-1,curr.y);
 		}
-		System.out.println(individual.getCurr_pos().toString() + next);
+		//System.out.println(individual.getCurr_pos().toString() + next);
 		//Ver se ja esta na lista do caminho (Se nao adicionar else remover até esse ponto)
 		if(individual.path==null) {
 			individual.path.add(next);
@@ -117,7 +117,7 @@ public class Move extends Event {
 			
 		}
 		
-		System.out.println("path size:"+individual.path.size()+" i:"+i);
+		//System.out.println("path size:"+individual.path.size()+" i:"+i);
 		
 		if(i==individual.path.size()) {
 			individual.path.add(next);
@@ -150,9 +150,9 @@ public class Move extends Event {
 				
 				
 			}
-			individual.setCurr_pos(next);
+			
 		}
-		
+		individual.setCurr_pos(next);
 		//Atualizar conforto
 		individual.SetComfortDistance(sim.FindMaxCost(), sim.size.x, sim.size.y);
 		

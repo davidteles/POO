@@ -12,12 +12,12 @@ public class Reproduction extends Event {
 
 	public void realizeEvent(Simulation sim) {
 		sim.curr_instant=this.instant;
-		System.out.println("Individual "+ this.ID +" will reproduce in instant "+ this.instant+".");
+		//System.out.println("Individual "+ this.ID +" will reproduce in instant "+ this.instant+".");
 
 		Individual individual = sim.pop.findID(this.ID);
 		
 		if (individual==null) {
-			System.out.println("Indiviual "+this.ID + " is already dead.");
+			//System.out.println("Indiviual "+this.ID + " is already dead.");
 			return;
 		}	
 		
