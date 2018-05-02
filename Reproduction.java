@@ -4,7 +4,7 @@ public class Reproduction extends Event {
 	protected int ID;
 
 	
-	public Reproduction(int iD, int instant) {
+	public Reproduction(int iD, float instant) {
 		super(instant);
 		ID = iD;
 		// TODO Auto-generated constructor stub
@@ -50,8 +50,8 @@ public class Reproduction extends Event {
 		//adicionar individuo
 		sim.pop.addIndividual(filho.getCurr_pos(),sim.FindMaxCost(),sim.size.x, sim.size.y, sim.pop.k);
 		
-		int nexttime_mfilho = individual.calculateNewMove(individual.getConfort(),sim.pop.r_param)+sim.curr_instant;
-		int nexttime_rfilho = individual.calculateNewReproduction(individual.getConfort(),sim.pop.r_param)+sim.curr_instant;
+		float nexttime_mfilho = individual.calculateNewMove(individual.getConfort(),sim.pop.r_param)+sim.curr_instant;
+		float nexttime_rfilho = individual.calculateNewReproduction(individual.getConfort(),sim.pop.r_param)+sim.curr_instant;
 		
 		sim.pec.addMove(filhoID, sim.curr_instant + nexttime_mfilho);
 		sim.pec.addReproduction(filhoID, sim.curr_instant + nexttime_rfilho);
@@ -61,7 +61,7 @@ public class Reproduction extends Event {
 		
 		//definir tempo da proxima reprodução
 		
-		int nexttime = individual.calculateNewReproduction(individual.getConfort(),sim.pop.r_param)+sim.curr_instant;
+		float nexttime = individual.calculateNewReproduction(individual.getConfort(),sim.pop.r_param)+sim.curr_instant;
 		
 		if(nexttime<=sim.final_instant) {
 			

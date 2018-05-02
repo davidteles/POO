@@ -9,7 +9,7 @@ public class Simulation {
 	int nobst; //numero de obstaculos - recebido do ficheiro (CONFIRMAR MODIFIER)
 	Coord size; //tamanho da grid
 	int final_instant; //instante final - variavel recebida do ficheiro (CONFIRMAR MODIFIER)
-	int curr_instant; //instante atual
+	float curr_instant; //instante atual
 	PEC pec;
 	LinkedList<Zone> zones; //lista de zonas especiais (com custo diferente de 1) - recebido do ficheiro (CONFIRMAR MODIFIER)
 	Population pop; //associacao a populacao 
@@ -70,9 +70,9 @@ public class Simulation {
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		XML parser = new XML();
-		parser.ParseXML("C:/Users/RitaC/Documents/2ºsemestre2017_2018/POO/Projecto/data1.xml"); //Alterar conforme necessario - ATENCAO A ISTO E A DESFORMATACAO DE CARACTER
+		parser.ParseXML("C:/Users/RitaC/Documents/2ï¿½semestre2017_2018/POO/Projecto/data1.xml"); //Alterar conforme necessario - ATENCAO A ISTO E A DESFORMATACAO DE CARACTER
 		
 		/*Armazenamento dos dados lidos do ficheiros nas variaveis pretendidas*/
 		Simulation sim = new Simulation(parser.obstacles, parser.var[4], parser.size, parser.var[0], parser.zones);

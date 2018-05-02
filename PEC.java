@@ -15,25 +15,25 @@ public class PEC {
 	 }
 
 	 
-	 public void addMove(int id, int instant) {
+	 public void addMove(int id, float instant) {
 			
 		Move mov = new Move(id,instant);
 		this.pec.add(mov);
 	 }
 	 
-	 public void addReproduction(int id, int instant) {
+	 public void addReproduction(int id, float instant) {
 			
 		Reproduction rep = new Reproduction(id,instant);
 		this.pec.add(rep);
 	 }
 	 
-	 public void addDeath(int id, int instant) {
+	 public void addDeath(int id, float instant) {
 			
 		Death dea = new Death(id,instant);
 		this.pec.add(dea);
 	 }
 	 
-	 public void addStatusUpdate(int instant) {
+	 public void addStatusUpdate(float instant) {
 			
 			StatusUpdate update = new StatusUpdate(instant);
 			this.pec.add(update);

@@ -3,7 +3,7 @@ package project;
 public class Death extends Event {
 	protected int ID;
 	
-	public Death(int iD, int instant) {
+	public Death(int iD, float instant) {
 		super(instant);
 		ID = iD;
 	}

@@ -7,7 +7,7 @@ public class Move extends Event {
 	protected float direction;
 	protected int ID;
 	
-	public Move(int iD, int instant) {
+	public Move(int iD, float instant) {
 		super(instant);
 		Random random = new Random();
 		ID = iD;
@@ -136,7 +136,7 @@ public class Move extends Event {
 		//Atualizar conforto
 		individual.Confort(sim.FindMaxCost(), sim.size.x, sim.size.y, sim.pop.k);
 		
-		int nexttime = individual.calculateNewMove(individual.getConfort(),sim.pop.m_param)+sim.curr_instant;
+		float nexttime = individual.calculateNewMove(individual.getConfort(),sim.pop.m_param)+sim.curr_instant;
 		if(nexttime<=sim.final_instant) {
 			sim.pec.addMove(individual.getId(), nexttime);
 		}

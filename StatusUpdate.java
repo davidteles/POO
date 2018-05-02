@@ -2,7 +2,7 @@ package project;
 
 public class StatusUpdate extends Event {
 
-	public StatusUpdate(int instant) {
+	public StatusUpdate(float instant) {
 		super(instant);
 	}
 

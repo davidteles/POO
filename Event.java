@@ -2,9 +2,9 @@ package project;
 
 public abstract class Event {
 
-	int instant;
+	float instant;
 	
-	public Event(int instant) {
+	public Event(float instant) {
 		this.instant = instant;
 	}
 	
