@@ -45,13 +45,13 @@ public class Reproduction extends Event {
 			filho.setTotal_cost(filho.getTotal_cost()+cost);
 		}
 		
-		filho.Confort(sim.FindMaxCost(), sim.size.x, sim.size.y, sim.pop.k);
 		
+		filho.SetComfortDistance(sim.FindMaxCost(), sim.size.x, sim.size.y);
 		//adicionar individuo
 		sim.pop.addIndividual(filho.getCurr_pos(),sim.FindMaxCost(),sim.size.x, sim.size.y, sim.pop.k);
 		
-		float nexttime_mfilho = individual.calculateNewMove(individual.getConfort(),sim.pop.r_param)+sim.curr_instant;
-		float nexttime_rfilho = individual.calculateNewReproduction(individual.getConfort(),sim.pop.r_param)+sim.curr_instant;
+		float nexttime_mfilho = individual.calculateNewMove()+sim.curr_instant;
+		float nexttime_rfilho = individual.calculateNewReproduction()+sim.curr_instant;
 		
 		sim.pec.addMove(filhoID, sim.curr_instant + nexttime_mfilho);
 		sim.pec.addReproduction(filhoID, sim.curr_instant + nexttime_rfilho);
@@ -61,7 +61,7 @@ public class Reproduction extends Event {
 		
 		//definir tempo da proxima reprodução
 		
-		float nexttime = individual.calculateNewReproduction(individual.getConfort(),sim.pop.r_param)+sim.curr_instant;
+		float nexttime = individual.calculateNewReproduction()+sim.curr_instant;
 		
 		if(nexttime<=sim.final_instant) {
 			

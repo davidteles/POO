@@ -134,9 +134,9 @@ public class Move extends Event {
 		}
 		
 		//Atualizar conforto
-		individual.Confort(sim.FindMaxCost(), sim.size.x, sim.size.y, sim.pop.k);
+		individual.SetComfortDistance(sim.FindMaxCost(), sim.size.x, sim.size.y);
 		
-		float nexttime = individual.calculateNewMove(individual.getConfort(),sim.pop.m_param)+sim.curr_instant;
+		float nexttime = individual.calculateNewMove()+sim.curr_instant;
 		if(nexttime<=sim.final_instant) {
 			sim.pec.addMove(individual.getId(), nexttime);
 		}

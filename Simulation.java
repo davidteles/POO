@@ -87,9 +87,9 @@ public class Simulation {
 		for(int i = 0; i<population.individuals.size(); i++) {
 			Individual ind = population.individuals.get(i); 
 			
-			sim.pec.addDeath(i+1, ind.calculateDeath(ind.getConfort(), population.d_param));
-			sim.pec.addMove(i+1, ind.calculateNewMove(ind.getConfort(), population.m_param));
-			sim.pec.addReproduction(i+1, ind.calculateNewReproduction(ind.getConfort(), population.r_param));	
+			sim.pec.addDeath(i+1, ind.calculateDeath());
+			sim.pec.addMove(i+1, ind.calculateNewMove());
+			sim.pec.addReproduction(i+1, ind.calculateNewReproduction());	
 		}
 		
 		for(int i = 1; i<=20; i++) {

@@ -92,14 +92,7 @@ public class Individual {
 		return dist_end;
 	}
 	
-	//parametro do conforto - REVER
-	public int distanceFromStart(Coord current_pos) {
-		
-		int dist_start=0;
-		dist_start= (current_pos.x - population.init_pos.x) + (current_pos.y - population.init_pos.y);	
-		return dist_start;
-	}
-	
+
 	//Adicionar ponto ao caminho do individuo
 	public void addPath(int x,int y) {
 		
@@ -124,50 +117,71 @@ public class Individual {
 		//n e m - tamanho da grid, n-x, m-y
 		//k - ir buscar a population
 		
-		float conforto=0;
+		float conforto;
 		int dist = this.distanceToEnd(this.getCurr_pos());
 		
-		conforto= ((1-((this.getTotal_cost()-this.getDistance() + 2)/((cmax-1)*this.getDistance() + 3)))^k) * ((1-((dist)/(n + m + 1)))^k);
+		conforto= (float) (Math.pow(((1.0-((this.getTotal_cost()-this.getDistance() + 2.0)/((cmax-1.0)*this.getDistance() + 3.0)))),k) * Math.pow(((1.0-((dist)/(n + m + 1.0)))),k));
 				
 		return conforto;
 	}
 	
-	public int calculateDeath (float confort, int d_param) {
+	public float calculateDeath () {
 		
-		int instance;
+		float confort = this.confort;
+		int d_param = this.population.d_param;
+		float instance;
 		double media;
 		Random random=new Random();
 		double next= random.nextDouble();
 		
-		media = ((1-Math.log(1-(double)confort))*d_param);
-		instance = (int) Math.floor((-media*Math.log(1-next)));
-		return -instance;		
+		media = ((1.0-Math.log(1.0-(double)confort))*d_param);
+		instance = (float)  (-media*Math.log(1.0-next));
+		return instance;		
 	}
 
-	public int calculateNewMove (float confort, int m_param) {
-	
-		int instance;
+	public float calculateNewMove () {
+		float confort = this.confort;
+		int m_param = this.population.m_param;
+		
+		float instance;
 		double media;
 		Random random=new Random();
 		double next= random.nextDouble();
 		
-		media = (1-Math.log((double)confort))*m_param;
-		instance = (int) Math.floor((-media*Math.log(1-next)));
-		return -instance;		
+		media = (1.0-Math.log((double)confort))*m_param;
+		instance = (float) (-media*Math.log(1.0-next));
+		return instance;		
 	}
 
-	public int calculateNewReproduction (float confort, int r_param) {
+	public float calculateNewReproduction () {
 	
-		int instance;
+		float confort = this.confort;
+		int r_param = this.population.r_param;
+		float instance;
 		double media;
 		
 		Random random=new Random();
 		double next= random.nextDouble();
 		
-		media = (1-Math.log((double)confort))*r_param;
+		media = (1.0-Math.log((double)confort))*r_param;
 		
-		instance = (int) Math.floor((-media*Math.log(1-next)));
-		return -instance;		
+		instance = (float) (-media*Math.log(1.0-next));
+		return instance;		
+	}
+	
+	public static void main(String[] args) {
+		Coord pos = new Coord(0,0);
+		Coord pos_final = new Coord(8,8);
+		Population pop = new Population(1,10,pos,pos_final,2,2,2,2);
+		Individual individual = new Individual(pop,1,pos);
+		individual.SetComfortDistance(1, 10, 10);
+		System.out.println("Confort:"+individual.getConfort());
+		float temp = individual.calculateNewMove();
+		System.out.println("Move time:"+temp);
+		temp = individual.calculateNewReproduction();
+		System.out.println("Reproduction time:"+temp);
+		temp = individual.calculateDeath();
+		System.out.println("Death time:"+temp);
 	}
 
 
