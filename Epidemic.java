@@ -1,67 +1,62 @@
 package project;
 
 import java.util.Random;
-import java.util.Arrays;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Collections;
 
 public class Epidemic extends Event {
 
-	protected float threshold;
-	
-	
-	
-	
-	
 	public Epidemic(float instant) {
 		super(instant);
-		Random random = new Random();
-		this.threshold = random.nextFloat();
 	}
-
-
-
-
 
 	public void realizeEvent(Simulation sim) {
 			
-	
+		LinkedList<Individual> ind;
 		
-		Arrays <Individual> confort;
-		confort = sim.pop.individuals.toArray();
-		for(int j=0; j<sim.pop.individuals.size(); j++) {
-			
-			confort[j]=0;
-		}
+		ind = sim.pop.individuals;
+		Comparator<Individual> cmp1 = new ConfortComparator();
 		
-		for(int i=0; i<sim.pop.individuals.size(); i++) {
-			
-			if(sim.pop.individuals.get(i).getConfort()>=confort[i]) {
-				
-				confort[i]=sim.pop.individuals.get(i).getConfort();
-						
-					for(int z=i+1; z<sim.pop.individuals.size(); z++) {
-							
-						confort[z]=confort[z-1];
-					}
-				}		
-			}
+		Collections.sort(ind, cmp1);
 		
-		for(int j=5; j<sim.pop.individuals.size(); j++) {
+		for(int i=0; i<ind.size(); i++) {
+			Random random = new Random();
 			
-			if(confort[j] < this.threshold) {
-				
-				for(int w=0; w<=sim.pop.individuals.size(); w++) {
-				  
-					if(confort[j]==sim.pop.individuals.get(w).getConfort()) {
-					  
-					  sim.pop.individuals.remove(w);
-					  continue;
-				  	}
-				  
-			  	}
-				
+			if(random.nextFloat()>ind.get(i).getConfort()) {
+				ind.remove(i);
 			}
 		}
+		
+		Comparator<Individual> cmp2 = new IdComparator();
+		
+		Collections.sort(ind, cmp2);
 		
 	}
-			
+				
 }
+
+class ConfortComparator implements Comparator<Individual>{
+	public int compare(Individual a, Individual b)
+    {
+		if(a.getConfort()<b.getConfort()) {
+			 return -1;
+		 } else if(a.getConfort()>b.getConfort()) {
+			 return 1;
+		 }
+		 return 0;
+    }
+}
+
+class IdComparator implements Comparator<Individual>{
+	public int compare(Individual a, Individual b)
+    {
+		if(a.getId()<b.getId()) {
+			 return -1;
+		 } else if(a.getId()>b.getId()) {
+			 return 1;
+		 }
+		 return 0;
+    }
+}
+
