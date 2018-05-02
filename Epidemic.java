@@ -1,6 +1,7 @@
 package project;
 
 import java.util.Random;
+import java.util.Arrays;
 
 public class Epidemic extends Event {
 
@@ -24,8 +25,8 @@ public class Epidemic extends Event {
 			
 	
 		
-		float[] confort = new float[sim.pop.individuals.size()];
-		
+		Arrays <Individual> confort;
+		confort = sim.pop.individuals.toArray();
 		for(int j=0; j<sim.pop.individuals.size(); j++) {
 			
 			confort[j]=0;
