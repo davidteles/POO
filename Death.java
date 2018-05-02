@@ -16,5 +16,6 @@ public class Death extends Event {
 		System.out.println("Individual "+ this.ID +" will die in instant "+ this.instant+".");
 		Individual temp = sim.pop.findID(this.ID);
 		sim.pop.individuals.remove(temp);
+		sim.pop.setV(sim.pop.v-1);
 		}
 }
