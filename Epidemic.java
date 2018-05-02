@@ -59,4 +59,3 @@ class IdComparator implements Comparator<Individual>{
 		 return 0;
     }
 }
-

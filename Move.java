@@ -23,6 +23,7 @@ public class Move extends Event {
 			System.out.println("Indiviual "+this.ID + " is already dead.");
 			return;
 		}
+		
 		int n_value = 0;
 		Coord next;
 		int[] n = new int[4];
@@ -32,6 +33,7 @@ public class Move extends Event {
 		//Ver em que sitio do mapa esta (
 		aux.x=curr.x;
 		aux.y=curr.y+1;
+		//System.out.println("x:"+aux.x+"y:"+aux.y);
 		if(aux.y<sim.size.y && sim.findObstacle(aux)==0) {
 			n[0]=1;
 			n_value++;
@@ -41,6 +43,7 @@ public class Move extends Event {
 	
 		aux.x=curr.x+1;
 		aux.y=curr.y;
+		//System.out.println("x:"+aux.x+"y:"+aux.y);
 		if(aux.x<sim.size.x && sim.findObstacle(aux)==0) {
 			n[1]=1;
 			n_value++;
@@ -51,6 +54,7 @@ public class Move extends Event {
 
 		aux.x=curr.x;
 		aux.y=curr.y-1;
+		//System.out.println("x:"+aux.x+"y:"+aux.y);
 		if(aux.y>=0 && sim.findObstacle(aux)==0) {
 			n[2]=1;
 			n_value++;
@@ -59,6 +63,7 @@ public class Move extends Event {
 		}
 		aux.x=curr.x-1;
 		aux.y=curr.y;
+		//System.out.println("x:"+aux.x+"y:"+aux.y);
 		if(aux.x>=0 && sim.findObstacle(aux)==0) {
 			n[3]=1;
 			n_value++;
@@ -66,10 +71,15 @@ public class Move extends Event {
 			n[3]=0;
 		}
 		
-		
 		//Ver para onde é que ele se move
 		int i,j,counter=0;
-		for(i=0;((i)/n_value<=this.direction && this.direction<(i+1)/n_value);i++) ;
+		for(i=0;;i++) {
+			if((i)/n_value<=this.direction && this.direction<(i+1)/n_value) {
+				break;
+			}
+		}
+		//System.out.println("i:"+i+" because "+this.direction);
+		
 		for(j=0;j<4;j++) {
 			if(n[j]==1) {
 				counter++;
@@ -79,6 +89,10 @@ public class Move extends Event {
 			}
 			
 		}
+		
+
+		System.out.println("j:"+j+" counter:"+counter);
+		
 		if(j==0) {
 			next = new Coord(curr.x,curr.y+1);
 		}else if(j==1) {
@@ -88,7 +102,7 @@ public class Move extends Event {
 		}else {
 			next = new Coord(curr.x-1,curr.y);
 		}
-
+		System.out.println(individual.getCurr_pos().toString() + next);
 		//Ver se ja esta na lista do caminho (Se nao adicionar else remover até esse ponto)
 		if(individual.path==null) {
 			individual.path.add(next);

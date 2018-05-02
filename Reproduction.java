@@ -22,7 +22,7 @@ public class Reproduction extends Event {
 		}	
 		
 		int dist_filho= (int) Math.ceil(individual.getDistance()*(0.9+0.1*(individual.getConfort())));
-		System.out.println("Son Distance: "+dist_filho);
+		//System.out.println("Son Distance: "+dist_filho);
 		int filhoID= (sim.pop.individuals.getLast().getId())+1;
 		
 		if(dist_filho == 0) {
@@ -54,7 +54,7 @@ public class Reproduction extends Event {
 		
 		filho.SetComfortDistance(sim.FindMaxCost(), sim.size.x, sim.size.y);
 		//adicionar individuo
-		System.out.println("Indiviual "+filho.getId()+ " was born.");
+		//System.out.println("Indiviual "+filho.getId()+ " was born.");
 		sim.pop.addIndividual(filho.getCurr_pos(),sim.FindMaxCost(),sim.size.x, sim.size.y, sim.pop.k);
 		
 		float nexttime_mfilho = individual.calculateNewMove()+sim.curr_instant;
