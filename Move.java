@@ -91,7 +91,7 @@ public class Move extends Event {
 		}
 		
 
-		System.out.println("j:"+j+" counter:"+counter);
+		//System.out.println("j:"+j+" counter:"+counter);
 		
 		if(j==0) {
 			next = new Coord(curr.x,curr.y+1);
@@ -116,11 +116,15 @@ public class Move extends Event {
 			}
 			
 		}
-		if(i==individual.path.size()-1) {
+		
+		System.out.println("path size:"+individual.path.size()+" i:"+i);
+		
+		if(i==individual.path.size()) {
 			individual.path.add(next);
 			//Add cost,length and update position 
 			int cost=1;
 			for(int k=0;k<sim.zones.size();k++) {
+				
 				if(cost<sim.zones.get(k).getZoneCost(curr, next)) {
 					cost=sim.zones.get(k).getZoneCost(curr, next);
 				}
@@ -135,6 +139,7 @@ public class Move extends Event {
 			for(j=individual.path.size()-1;j>i;j--) {
 				individual.setDistance(individual.getDistance()-1);
 				int cost=1;
+				
 				for(int k=0;k<sim.zones.size();k++) {
 					if(cost<sim.zones.get(k).getZoneCost(individual.path.get(j), individual.path.get(j-1))) {
 						cost=sim.zones.get(k).getZoneCost(individual.path.get(j), individual.path.get(j-1));
