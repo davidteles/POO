@@ -20,6 +20,5 @@ public abstract class Event {
 		System.out.println("Individual "+ move.ID +" will move in instant "+ move.instant + " to the variable "+ move.direction+".");
 		System.out.println("Individual "+ death.ID +" will die in instant "+ death.instant+".");
 		System.out.println("Individual "+ reproduction.ID +" will reproduce in instant "+ reproduction.instant + ".");
-		System.out.println("Every individual with a confort ower than "+ epidemic.threshold + " will diy in instant " +epidemic.instant +".");
 	}
 }
