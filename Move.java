@@ -136,8 +136,6 @@ public class Move extends Event {
 				}
 			}
 			
-			
-			
 			individual.setCurr_pos(next);
 			individual.setDistance(individual.getDistance()+1);
 			individual.setTotal_cost(individual.getTotal_cost()+cost);
@@ -163,7 +161,7 @@ public class Move extends Event {
 		individual.SetComfortDistance(sim.FindMaxCost(), sim.size.x, sim.size.y);
 		
 		float nexttime = individual.calculateNewMove()+sim.curr_instant;
-		if(nexttime<=sim.final_instant) {
+		if(nexttime<=sim.final_instant && individual.getDeath_inst()>nexttime) {
 			sim.pec.addMove(individual.getId(), nexttime);
 		}
 		

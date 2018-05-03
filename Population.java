@@ -25,7 +25,7 @@ public class Population {
 		this.d_param = dp;
 		this.r_param = rp;
 		this.m_param = mp;
-		this.individuals = null;
+		this.individuals = new LinkedList<Individual>();
 	}
 	
 	public int getV_max() {

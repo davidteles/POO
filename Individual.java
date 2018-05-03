@@ -12,6 +12,7 @@ public class Individual {
 	private int distance; //distancia percorrida
 	private float confort; //conforto atual do individuo
 	private Coord curr_pos; //coordenadas da posicao actual do individuo
+	private float death_inst; //Instante da morte do individuo
 	LinkedList<Coord> path; //lista com o caminho feito pelo individuo
 	Population population; //associacao a classe population - REVER associacao
 	
@@ -26,8 +27,17 @@ public class Individual {
 		this.distance = 0; //ditancia inicial e zero
 		this.confort = 0; //calculo do conforto logo assim que o individuo e criado
 		this.curr_pos = pos; //posicao sera a inicial ou o local onde ele nasce
+		this.death_inst = 0;
 	}
 	
+	public float getDeath_inst() {
+		return death_inst;
+	}
+
+	public void setDeath_inst(float death_inst) {
+		this.death_inst = death_inst;
+	}
+
 	public void SetComfortDistance(int cmax, int n, int m) {
 		
 		int dist = this.path.size()-1;
