@@ -72,7 +72,7 @@ public class Simulation {
 	public static void main(String[] args) {
 		
 		XML parser = new XML();
-		parser.ParseXML("C:/Users/RitaC/Documents/2ºsemestre2017_2018/POO/Projecto/data1.xml"); //Alterar conforme necessario - ATENCAO A ISTO E A DESFORMATACAO DE CARACTER
+		parser.ParseXML("/Users/davidteles/eclipse-workspace/Projeto/src/project/data1.xml"); //Alterar conforme necessario - ATENCAO A ISTO E A DESFORMATACAO DE CARACTER
 		
 		/*Armazenamento dos dados lidos do ficheiros nas variaveis pretendidas*/
 		Simulation sim = new Simulation(parser.obstacles, parser.var[4], parser.size, parser.var[0], parser.zones);

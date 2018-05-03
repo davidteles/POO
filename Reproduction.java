@@ -22,12 +22,12 @@ public class Reproduction extends Event {
 		}	
 		
 		int dist_filho= (int) Math.ceil(individual.getDistance()*(0.9+0.1*(individual.getConfort())));
-		System.out.println("dist_filho="+dist_filho);
+		//System.out.println("dist_filho="+dist_filho);
 		
 		//System.out.println("Son Distance: "+dist_filho);
 		int filhoID = (sim.pop.individuals.getLast().getId())+1;
-		Individual filho= new Individual(sim.pop, filhoID, individual.path.get(0));
-		
+		Individual filho = new Individual(sim.pop, filhoID, individual.path.get(0));
+		//System.out.println("Dad"+individual.getId()+individual.path.get(0).toString()+"Soon"+filho.getId()+filho.path.get(0).toString());
 		filho.setDistance(dist_filho);
 		
 		if(dist_filho == 0) {
@@ -37,7 +37,7 @@ public class Reproduction extends Event {
 		//definir coordenanda
 		
 		int cost=1;
-		if(dist_filho != 0) {
+
 			for(int i=1; i<dist_filho; i++) {
 				
 				filho.path.add(individual.path.get(i));
@@ -50,13 +50,26 @@ public class Reproduction extends Event {
 				}
 				filho.setTotal_cost(filho.getTotal_cost()+cost);
 		}
-		
+			
+			/*Debuging Print
+			if(filho != null) {
+				
+				System.out.print("{"+filho.path.get(0).toString());
+				for(int i=1;i<filho.path.size();i++) {
+					System.out.print(","+filho.path.get(i).toString());
+				}
+				
+				
+			}
+			System.out.println("}");
+			*/
+			
 		filho.setCurr_pos(individual.path.get(dist_filho-1));
 		filho.SetComfortDistance(sim.FindMaxCost(), sim.size.x, sim.size.y);
 		//adicionar individuo
 		//System.out.println("Indiviual "+filho.getId()+ " was born.");
-		sim.pop.addIndividual(filho.getCurr_pos(),sim.FindMaxCost(),sim.size.x, sim.size.y, sim.pop.k);
 		
+		sim.pop.individuals.add(filho);
 		filho.setDeath_inst(filho.calculateDeath()+sim.curr_instant);
 		if(filho.getDeath_inst()<=sim.final_instant) {
 			sim.pec.addDeath(filho.getId(), filho.getDeath_inst());
@@ -76,7 +89,7 @@ public class Reproduction extends Event {
 		
 		//mudar tamanho da populacao
 		
-		sim.pop.setV((sim.pop.v)+1);
+		
 		
 		//definir tempo da proxima reprodução
 		
@@ -84,14 +97,15 @@ public class Reproduction extends Event {
 		if(individual.getDeath_inst()>inst) {
 			sim.pec.addReproduction(individual.getId(), inst);
 		}
-
+		sim.pop.setV(sim.pop.individuals.size());
 		//Definir epidemia
 		if(sim.pop.v > sim.pop.getV_max()) {
 			Event eve= new Epidemic(sim.curr_instant); 
 			sim.numberofevents++;
 			eve.realizeEvent(sim);
 		}
+		sim.pop.setV(sim.pop.individuals.size());
 	}
 			
-		}
+		
 }

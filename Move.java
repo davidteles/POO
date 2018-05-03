@@ -17,12 +17,13 @@ public class Move extends Event {
 
 	public void realizeEvent(Simulation sim) {
 		sim.curr_instant=this.instant;
+		/*
 		if(sim.pop.v > sim.pop.getV_max()) {
 			//System.out.println("Epidemic!");
 			Event eve= new Epidemic(sim.curr_instant); 
 			sim.numberofevents++;
 			eve.realizeEvent(sim);
-		}
+		}*/
 		//System.out.println("Individual "+ this.ID +" will move in instant "+ this.instant+".");
 		Individual individual = sim.pop.findID(this.ID);
 		if (individual==null) {

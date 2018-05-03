@@ -16,13 +16,9 @@ public class Death extends Event {
 		
 		Individual temp = sim.pop.findID(this.ID);
 		sim.pop.individuals.remove(temp);
-		sim.pop.setV(sim.pop.v-1);
+		sim.pop.setV(sim.pop.individuals.size());
 		
-		if(sim.pop.v > sim.pop.getV_max()) {
-			Event eve= new Epidemic(sim.curr_instant); 
-			sim.numberofevents++;
-			eve.realizeEvent(sim);
-		}
+
 	
 	}
 }
