@@ -41,7 +41,7 @@ public class Move extends Event {
 		aux.x=curr.x;
 		aux.y=curr.y+1;
 		//System.out.println("x:"+aux.x+"y:"+aux.y);
-		if(aux.y<sim.size.y && sim.findObstacle(aux)==0) {
+		if(aux.y<=sim.size.y && sim.findObstacle(aux)==0) {
 			n[0]=1;
 			n_value++;
 		} else {
@@ -51,7 +51,7 @@ public class Move extends Event {
 		aux.x=curr.x+1;
 		aux.y=curr.y;
 		//System.out.println("x:"+aux.x+"y:"+aux.y);
-		if(aux.x<sim.size.x && sim.findObstacle(aux)==0) {
+		if(aux.x<=sim.size.x && sim.findObstacle(aux)==0) {
 			n[1]=1;
 			n_value++;
 		} else {
@@ -62,7 +62,7 @@ public class Move extends Event {
 		aux.x=curr.x;
 		aux.y=curr.y-1;
 		//System.out.println("x:"+aux.x+"y:"+aux.y);
-		if(aux.y>=0 && sim.findObstacle(aux)==0) {
+		if(aux.y>=1 && sim.findObstacle(aux)==0) {
 			n[2]=1;
 			n_value++;
 		} else {
@@ -71,7 +71,7 @@ public class Move extends Event {
 		aux.x=curr.x-1;
 		aux.y=curr.y;
 		//System.out.println("x:"+aux.x+"y:"+aux.y);
-		if(aux.x>=0 && sim.findObstacle(aux)==0) {
+		if(aux.x>=1 && sim.findObstacle(aux)==0) {
 			n[3]=1;
 			n_value++;
 		} else {
