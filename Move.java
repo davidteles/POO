@@ -3,6 +3,7 @@ package project;
 
 import java.util.Random;
 
+
 public class Move extends Event {
 	protected float direction;
 	protected int ID;
@@ -17,6 +18,7 @@ public class Move extends Event {
 
 	public void realizeEvent(Simulation sim) {
 		sim.curr_instant=this.instant;
+		
 		/*
 		if(sim.pop.v > sim.pop.getV_max()) {
 			//System.out.println("Epidemic!");
@@ -78,27 +80,23 @@ public class Move extends Event {
 			n[3]=0;
 		}
 		
-		//Ver para onde é que ele se move
+		//Ver para onde e que ele se move
 		int i,j,counter=0;
-		for(i=0;;i++) {
-			if((i)/n_value<=this.direction && this.direction<(i+1)/n_value) {
+		for(i=0;i<4;i++) {
+			if(((float)i/(float)n_value)<this.direction && this.direction<=((float)(i+1)/(float)n_value)) {
 				break;
-			}
+			}	
 		}
-		//System.out.println("i:"+i+" because "+this.direction);
-		
+
 		for(j=0;j<4;j++) {
 			if(n[j]==1) {
 				counter++;
+				if(counter==i+1) {
+					break;
+				}
 			}
-			if(counter==i) {
-				break;
-			}
-			
 		}
 		
-
-		//System.out.println("j:"+j+" counter:"+counter);
 		
 		if(j==0) {
 			next = new Coord(curr.x,curr.y+1);
@@ -109,10 +107,10 @@ public class Move extends Event {
 		}else {
 			next = new Coord(curr.x-1,curr.y);
 		}
-		//System.out.println(individual.getCurr_pos().toString() + next);
-		//Ver se ja esta na lista do caminho (Se nao adicionar else remover até esse ponto)
+		
+		//Ver se ja esta na lista do caminho (Se nao adicionar else remover ate esse ponto)
 		if(individual.path==null) {
-			individual.path.add(next);
+			individual.path.addLast(next);
 		} else {
 			for(i=0;i<individual.path.size();i++) {
 				
@@ -126,8 +124,8 @@ public class Move extends Event {
 		
 		//System.out.println("path size:"+individual.path.size()+" i:"+i);
 		
-		if(i==individual.path.size()) {
-			individual.path.add(next);
+		if(i==individual.path.size()){
+			individual.path.addLast(next);
 			//Add cost,length and update position 
 			int cost=1;
 			for(int k=0;k<sim.zones.size();k++) {
@@ -156,8 +154,9 @@ public class Move extends Event {
 				
 			}
 			
+			individual.setCurr_pos(next);		
 		}
-		individual.setCurr_pos(next);
+		
 		//Atualizar conforto
 		individual.SetComfortDistance(sim.FindMaxCost(), sim.size.x, sim.size.y);
 		
@@ -172,7 +171,7 @@ public class Move extends Event {
 			if(sim.bestcost==0 || sim.bestcost>individual.getTotal_cost()) {
 				sim.bestpath.clear();
 				for(i=0;i<individual.path.size();i++) {
-					sim.bestpath.add(individual.path.get(i));
+					sim.bestpath.addLast(individual.path.get(i));
 						
 				}
 				
