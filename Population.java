@@ -43,14 +43,14 @@ public class Population {
 		while(this.individuals.size() != v) {
 				
 				if(this.individuals.size() != 0) {
-					Individual temp = new Individual(this, this.individuals.getLast().getId()+1, pos);
-					temp.SetComfortDistance(cmax, n, m);
+					Individual temp = new Individual(this.individuals.getLast().getId()+1, pos);
+					temp.SetComfortDistance(cmax, n, m, this.k, this.fin_pos);
 					this.individuals.addLast(temp);
 					
 				}else {
 					
-					Individual temp = new Individual(this, 1, pos);
-					temp.SetComfortDistance(cmax, n, m);
+					Individual temp = new Individual(1, pos);
+					temp.SetComfortDistance(cmax, n, m, this.k, this.fin_pos);
 					this.individuals.addLast(temp);
 				}
 			}
@@ -60,8 +60,8 @@ public class Population {
 	/*Adiciona um invividuo*/
 	public void addIndividual(Coord pos, int cmax, int n, int m, int k) {
 		
-		Individual temp = new Individual(this, this.individuals.getLast().getId()+1, pos);
-		temp.SetComfortDistance(cmax, n, m);
+		Individual temp = new Individual(this.individuals.getLast().getId()+1, pos);
+		temp.SetComfortDistance(cmax, n, m, this.k, this.fin_pos);
 		this.individuals.addLast(temp);
 		
 	}

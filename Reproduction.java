@@ -29,7 +29,7 @@ public class Reproduction extends Event {
 		
 		//System.out.println("Son Distance: "+dist_filho);
 		int filhoID = (sim.pop.individuals.getLast().getId())+1;
-		Individual filho = new Individual(sim.pop, filhoID, individual.path.get(0));
+		Individual filho = new Individual(filhoID, individual.path.get(0));
 		//System.out.println("Dad"+individual.getId()+individual.path.get(0).toString()+"Soon"+filho.getId()+filho.path.get(0).toString());
 		filho.setDistance(dist_filho);
 		
@@ -68,23 +68,23 @@ public class Reproduction extends Event {
 			*/
 			
 		filho.setCurr_pos(individual.path.get(dist_filho-1));
-		filho.SetComfortDistance(sim.FindMaxCost(), sim.size.x, sim.size.y);
+		filho.SetComfortDistance(sim.FindMaxCost(), sim.size.x, sim.size.y, sim.pop.k, sim.pop.fin_pos);
 		//adicionar individuo
 		//System.out.println("Indiviual "+filho.getId()+ " was born.");
 		
 		sim.pop.individuals.add(filho);
-		filho.setDeath_inst(filho.calculateDeath()+sim.curr_instant);
+		filho.setDeath_inst(filho.calculateDeath(sim.pop.d_param)+sim.curr_instant);
 		if(filho.getDeath_inst()<=sim.final_instant) {
 			sim.pec.addDeath(filho.getId(), filho.getDeath_inst());
 		}
 		
-		float inst = filho.calculateNewMove()+sim.curr_instant;
+		float inst = filho.calculateNewMove(sim.pop.m_param)+sim.curr_instant;
 		
 		if(filho.getDeath_inst()>inst && inst<=sim.final_instant) {
 			sim.pec.addMove(filho.getId(), inst);
 		}
 		
-		inst = filho.calculateNewReproduction()+sim.curr_instant;
+		inst = filho.calculateNewReproduction(sim.pop.r_param)+sim.curr_instant;
 		
 		if(filho.getDeath_inst()>inst && inst<=sim.final_instant) {
 			sim.pec.addReproduction(filho.getId(), inst);	
@@ -96,7 +96,7 @@ public class Reproduction extends Event {
 		
 		//definir tempo da proxima reprodução
 		
-		inst = individual.calculateNewReproduction()+sim.curr_instant;
+		inst = individual.calculateNewReproduction(sim.pop.r_param)+sim.curr_instant;
 		if(individual.getDeath_inst()>inst) {
 			sim.pec.addReproduction(individual.getId(), inst);
 		}

@@ -21,18 +21,18 @@ public class Sim {
 		for(int i = 0; i<population.individuals.size(); i++) {
 			Individual ind = population.individuals.get(i); 
 			
-			ind.setDeath_inst(ind.calculateDeath());
+			ind.setDeath_inst(ind.calculateDeath(sim.pop.d_param));
 			if(ind.getDeath_inst()<=sim.final_instant) {
 				sim.pec.addDeath(i+1, ind.getDeath_inst());
 			}
 			
-			float inst = ind.calculateNewMove();
+			float inst = ind.calculateNewMove(sim.pop.m_param);
 			
 			if(ind.getDeath_inst()>inst && inst<=sim.final_instant) {
 				sim.pec.addMove(i+1, inst);
 			}
 			
-			inst = ind.calculateNewReproduction();
+			inst = ind.calculateNewReproduction(sim.pop.r_param);
 			
 			if(ind.getDeath_inst()>inst && inst<=sim.final_instant) {
 				sim.pec.addReproduction(i+1, inst);	

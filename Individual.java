@@ -14,12 +14,12 @@ public class Individual {
 	private Coord curr_pos; //coordenadas da posicao actual do individuo
 	private float death_inst; //Instante da morte do individuo
 	LinkedList<Coord> path; //lista com o caminho feito pelo individuo
-	Population population; //associacao a classe population - REVER associacao
+	
 	
 	/*CONSTRUCTOR*/
-	public Individual(Population pop, int idx, Coord pos) {
+	public Individual( int idx, Coord pos) {
 		
-		this.population = pop;
+		
 		this.path = new LinkedList<Coord>(); //lista inicialmente a null
 		this.path.addLast(pos);
 		this.id = idx; //indentificacao do individuo	
@@ -38,10 +38,10 @@ public class Individual {
 		this.death_inst = death_inst;
 	}
 
-	public void SetComfortDistance(int cmax, int n, int m) {
+	public void SetComfortDistance(int cmax, int n, int m, int k, Coord finalpos) {
 		
 		int dist = this.path.size()-1;
-		float comf = this.Confort(cmax, n, m, this.population.k);
+		float comf = this.Confort(cmax, n, m, k, finalpos);
 		
 		this.setConfort(comf);
 		this.setDistance(dist);
@@ -94,11 +94,11 @@ public class Individual {
 	}
 
 	//parametro do conforto - menor numero de arestas desde a posicao atual ate a posicao final
-	public int distanceToEnd(Coord current_pos) { 
+	public int distanceToEnd(Coord current_pos, Coord fin_pos) { 
 		
 		int dist_end = 0;
 	
-		dist_end= (Math.abs(this.population.fin_pos.x- current_pos.x) + Math.abs(this.population.fin_pos.y - current_pos.y));
+		dist_end= (Math.abs(fin_pos.x- current_pos.x) + Math.abs(fin_pos.y - current_pos.y));
 		return dist_end;
 	}
 	
@@ -119,7 +119,7 @@ public class Individual {
 	}
 	
 	//calculo do conforto, tem erros porque ainda nao definimos k,cmax, n e m (tipo static final)
-	public float Confort (int cmax, int n, int m, int k) {
+	public float Confort (int cmax, int n, int m, int k, Coord finalpos) {
 		//cmax - vem do custo maximo que uma aresta pode ter - ir buscar as zonas especiais - pode ser uma variavel que se guarda logo
 		//tcost - vem do individuo
 		//length - tamanho do caminho que o individuo ja fez
@@ -128,17 +128,17 @@ public class Individual {
 		//k - ir buscar a population
 		
 		float conforto;
-		int dist = this.distanceToEnd(this.getCurr_pos());
+		int dist = this.distanceToEnd(this.getCurr_pos(),finalpos);
 		
 		conforto= (float) (Math.pow(((1.0-((this.getTotal_cost()-this.getDistance() + 2.0)/((cmax-1.0)*this.getDistance() + 3.0)))),k) * Math.pow(((1.0-((dist)/(n + m + 1.0)))),k));
 				
 		return conforto;
 	}
 	
-	public float calculateDeath () {
+	public float calculateDeath (int d) {
 		
 		float confort = this.confort;
-		int d_param = this.population.d_param;
+		int d_param = d;
 		float instance;
 		double media;
 		Random random=new Random();
@@ -149,9 +149,9 @@ public class Individual {
 		return instance;		
 	}
 
-	public float calculateNewMove () {
+	public float calculateNewMove (int m) {
 		float confort = this.confort;
-		int m_param = this.population.m_param;
+		int m_param = m;
 		
 		float instance;
 		double media;
@@ -163,10 +163,10 @@ public class Individual {
 		return instance;		
 	}
 
-	public float calculateNewReproduction () {
+	public float calculateNewReproduction (int r) {
 	
 		float confort = this.confort;
-		int r_param = this.population.r_param;
+		int r_param = r;
 		float instance;
 		double media;
 		
@@ -179,20 +179,6 @@ public class Individual {
 		return instance;		
 	}
 	
-	public static void main(String[] args) {
-		Coord pos = new Coord(0,0);
-		Coord pos_final = new Coord(8,8);
-		Population pop = new Population(1,10,pos,pos_final,2,2,2,2);
-		Individual individual = new Individual(pop,1,pos);
-		individual.SetComfortDistance(1, 10, 10);
-		System.out.println("Confort:"+individual.getConfort());
-		float temp = individual.calculateNewMove();
-		System.out.println("Move time:"+temp);
-		temp = individual.calculateNewReproduction();
-		System.out.println("Reproduction time:"+temp);
-		temp = individual.calculateDeath();
-		System.out.println("Death time:"+temp);
-	}
 
 
 }
