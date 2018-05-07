@@ -3,6 +3,8 @@ package project;
 
 import java.util.Random;
 
+import event.Event;
+
 
 public class Move extends Event {
 	protected float direction;
@@ -16,7 +18,8 @@ public class Move extends Event {
 	}
 	
 
-	public void realizeEvent(Simulation sim) {
+	public void realizeEvent(Object o) {
+		Simulation sim = (Simulation) o;
 		sim.curr_instant=this.instant;
 		
 		/*

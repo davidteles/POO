@@ -1,5 +1,7 @@
 package project;
 
+import event.Event;
+
 public class Reproduction extends Event {
 	protected int ID;
 
@@ -10,7 +12,8 @@ public class Reproduction extends Event {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void realizeEvent(Simulation sim) {
+	public void realizeEvent(Object o) {
+		Simulation sim = (Simulation) o;
 		sim.curr_instant=this.instant;
 		//System.out.println("Individual "+ this.ID +" will reproduce in instant "+ this.instant+".");
 

@@ -1,6 +1,9 @@
 package project;
 
 import java.util.Random;
+
+import event.Event;
+
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Collections;
@@ -11,7 +14,8 @@ public class Epidemic extends Event {
 		super(instant);
 	}
 
-	public void realizeEvent(Simulation sim) {
+	public void realizeEvent(Object o) {
+		Simulation sim = (Simulation) o;
 		Random random = new Random();
 		LinkedList<Individual> ind; 
 		

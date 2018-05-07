@@ -2,6 +2,9 @@ package project;
 
 import java.util.LinkedList;
 
+import event.Event;
+import pec.PEC;
+
 public class Simulation {
 	
 	/*FIELDS*/

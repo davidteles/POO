@@ -1,5 +1,7 @@
 package project;
 
+import event.Event;
+
 public class StatusUpdate extends Event {
 
 	public StatusUpdate(float instant) {
@@ -7,7 +9,8 @@ public class StatusUpdate extends Event {
 	}
 
 	
-	public void realizeEvent(Simulation sim) {
+	public void realizeEvent(Object o) {
+		Simulation sim = (Simulation) o;
 		sim.curr_instant=this.instant;
 
 		System.out.println("Present instant:			"+sim.curr_instant);

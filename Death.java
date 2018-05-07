@@ -1,5 +1,7 @@
 package project;
 
+import event.Event;
+
 public class Death extends Event {
 	protected int ID;
 	
@@ -11,7 +13,8 @@ public class Death extends Event {
 
 
 
-	public void realizeEvent(Simulation sim) {
+	public void realizeEvent(Object o) {
+		Simulation sim = (Simulation) o;
 		sim.curr_instant=this.instant;
 		
 		Individual temp = sim.pop.findID(this.ID);
