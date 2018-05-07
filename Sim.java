@@ -23,25 +23,29 @@ public class Sim {
 			
 			ind.setDeath_inst(ind.calculateDeath(sim.pop.d_param));
 			if(ind.getDeath_inst()<=sim.final_instant) {
-				sim.pec.addDeath(i+1, ind.getDeath_inst());
+				sim.pec.addToPEC(new Death(i+1, ind.getDeath_inst()));
+				
 			}
 			
 			float inst = ind.calculateNewMove(sim.pop.m_param);
 			
 			if(ind.getDeath_inst()>inst && inst<=sim.final_instant) {
-				sim.pec.addMove(i+1, inst);
+				sim.pec.addToPEC(new Move(i+1, inst));
+				
 			}
 			
 			inst = ind.calculateNewReproduction(sim.pop.r_param);
 			
 			if(ind.getDeath_inst()>inst && inst<=sim.final_instant) {
-				sim.pec.addReproduction(i+1, inst);	
+				sim.pec.addToPEC(new Reproduction(i+1, inst));
+				
 			}
 			
 		}
 		
 		for(int i = 1; i<=20; i++) {
-			sim.pec.addStatusUpdate(i*((int)(sim.final_instant/20)));
+			sim.pec.addToPEC(new StatusUpdate(i*((int)(sim.final_instant/20))));
+			
 		}
 		
 		//Run da PEC

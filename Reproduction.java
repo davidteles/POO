@@ -75,19 +75,22 @@ public class Reproduction extends Event {
 		sim.pop.individuals.add(filho);
 		filho.setDeath_inst(filho.calculateDeath(sim.pop.d_param)+sim.curr_instant);
 		if(filho.getDeath_inst()<=sim.final_instant) {
-			sim.pec.addDeath(filho.getId(), filho.getDeath_inst());
+			
+			sim.pec.addToPEC(new Death(filho.getId(), filho.getDeath_inst()));
 		}
 		
 		float inst = filho.calculateNewMove(sim.pop.m_param)+sim.curr_instant;
 		
 		if(filho.getDeath_inst()>inst && inst<=sim.final_instant) {
-			sim.pec.addMove(filho.getId(), inst);
+			sim.pec.addToPEC(new Move(individual.getId(), inst));
+			
 		}
 		
 		inst = filho.calculateNewReproduction(sim.pop.r_param)+sim.curr_instant;
 		
 		if(filho.getDeath_inst()>inst && inst<=sim.final_instant) {
-			sim.pec.addReproduction(filho.getId(), inst);	
+			
+			sim.pec.addToPEC(new Reproduction(filho.getId(), inst));
 		}
 		
 		//mudar tamanho da populacao
@@ -98,7 +101,8 @@ public class Reproduction extends Event {
 		
 		inst = individual.calculateNewReproduction(sim.pop.r_param)+sim.curr_instant;
 		if(individual.getDeath_inst()>inst) {
-			sim.pec.addReproduction(individual.getId(), inst);
+			
+			sim.pec.addToPEC(new Reproduction(individual.getId(), inst));
 		}
 		sim.pop.setV(sim.pop.individuals.size());
 		//Definir epidemia

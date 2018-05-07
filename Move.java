@@ -165,7 +165,8 @@ public class Move extends Event {
 		
 		float nexttime = individual.calculateNewMove(sim.pop.m_param)+sim.curr_instant;
 		if(nexttime<=sim.final_instant && individual.getDeath_inst()>nexttime) {
-			sim.pec.addMove(individual.getId(), nexttime);
+			
+			sim.pec.addToPEC(new Move(individual.getId(), nexttime));
 		}
 		
 		
