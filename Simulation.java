@@ -2,7 +2,7 @@ package project;
 
 import java.util.LinkedList;
 
-import event.Event;
+
 
 import pec.PEC;
 
@@ -15,7 +15,7 @@ public class Simulation {
 	Coord size; //tamanho da grid
 	int final_instant; //instante final - variavel recebida do ficheiro (CONFIRMAR MODIFIER)
 	float curr_instant; //instante atual
-	PEC<Event> pec; //array de eventos futuros
+	PEC pec; //array de eventos futuros
 	LinkedList<Zone> zones; //lista de zonas especiais (com custo diferente de 1) - recebido do ficheiro (CONFIRMAR MODIFIER)
 	Population pop; //associacao a populacao 
 	LinkedList<Coord> bestpath; //lista que armazena o melhor caminho encontrado
@@ -27,7 +27,7 @@ public class Simulation {
 		this.bestpath = new LinkedList<Coord>(); 
 		this.bestcost = 0; 
 		this.numberofevents=0; 
-		this.pec = new PEC<Event>(); 
+		this.pec = new PEC(); 
 		this.obstacles = obs; //lista de obstaculos e inicializada a null
 		this.nobst = nobs; //numero de obstaculos
 		this.size = size; //tamanho da grid e dado
