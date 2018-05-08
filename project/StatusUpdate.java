@@ -33,6 +33,8 @@ public class StatusUpdate extends Event {
 				if(aux != null) {
 					System.out.println("Cost/Comfort:				"+aux.getConfort());
 				
+				}else {
+					System.out.println("Cost/Comfort:				0");
 				}
 				System.out.println("");
 			} else {
