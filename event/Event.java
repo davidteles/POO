@@ -1,32 +1,31 @@
 package event;
 
-
 public abstract class Event {
 
-	protected float instant;
+	//FIELD
+	protected float instant; //Instante em que um evento ocorre
 	
+	//CONSTRUCTOR
 	public Event(float instant) {
 		this.instant = instant;
 	}
 	
+	//METODOS
 	
-	
+	//Get do instante
 	public float getInstant() {
 		return instant;
 	}
 
-
-
+	//Set do instante
 	public void setInstant(float instant) {
 		this.instant = instant;
 	}
 
-
-
+	//Metodo abstrato de realizacao evento 
 	public abstract void realizeEvent(Object o);
 
-
-
+	//Override do hashcode
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -35,11 +34,10 @@ public abstract class Event {
 		return result;
 	}
 
-
-
-	@Override
+	//Override do metodo equals para verificar a igualdade de instantes entre eventos
+	@Override 
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj)	
 			return true;
 		if (obj == null)
 			return false;
