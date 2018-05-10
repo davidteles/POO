@@ -47,7 +47,7 @@ public abstract class Event {
 		if (instant != other.instant)
 			return false;
 		return true;
-	}
+	} 
 	
 	
 	 
