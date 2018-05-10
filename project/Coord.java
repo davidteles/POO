@@ -2,30 +2,30 @@ package project;
 
 public class Coord {
 	
-	//FIELDS
+	/*FIELDS*/
 	public int x,y; //Coordenadas de uma posicao na grelha
 	
-	//CONSTRUCTOR
+	/*CONSTRUCTOR*/
 	public Coord(int inp_x, int inp_y) {
 		x = inp_x; //Inicializa a coordenada x com um determinado valor
 		y = inp_y; //Inicializa a coordenada y com um determinado valor
 	}
 	
-	//METODOS
+	/*METODOS*/
 	
-	//Set das coordenadas
+	/*Set das coordenadas*/
 	public void Set(int a,int b) {
 		x=a; 
 		y=b;
 	}
 
-	//Override do metodo toString para representar as coordenadas como pretendido 
+	/*Override do metodo toString para representar as coordenadas como pretendido*/
 	@Override
 	public String toString() {
 		return "(" + x + "," + y + ")";
 	}
 	
-	//Override do metodo hasjcode
+	/*Override do metodo hashcode*/
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -35,7 +35,7 @@ public class Coord {
 		return result;
 	}
 
-	//Override do metodo equals para verificar a igualdade de coordenadas
+	/*Override do metodo equals para verificar a igualdade de coordenadas*/
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
