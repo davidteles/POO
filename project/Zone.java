@@ -2,11 +2,11 @@ package project;
 
 public class Zone {
 	
-	//FIELDS
-	Coord point1, point2; //duas coordenadas que definem zona especial - dois pontos na diagonal
-	int cost; //custo da zona
+	/*FIELDS*/
+	Coord point1, point2; /*duas coordenadas que definem zona especial - dois pontos na diagonal*/
+	int cost; /*custo da zona*/
 	
-	//CONSTRUCTOR
+	/*CONSTRUCTOR*/
 	public Zone(Coord a, Coord b, int value) {
 		if(a.x<b.x) {
 			point1 = a;
@@ -19,9 +19,9 @@ public class Zone {
 		cost = value;
 	}
 	
-	//METODOS
+	/*METODOS*/
 	
-	//Verifica se uma aresta esta numa zona especial
+	/*Verifica se uma aresta esta numa zona especial*/
 	public int Intersection(Coord input) {
 		if(point1.equals(input)) {
 			return cost;
@@ -48,7 +48,7 @@ public class Zone {
 		return 1;
 	}
 	
-	//No caso de interseccao de zonas especias retorna o custo da zona de maior custo
+	/*No caso de interseccao de zonas especias retorna o custo da zona de maior custo*/
 	public int getZoneCost(Coord cur_point, Coord next_point){
 		int value_1 = this.Intersection(cur_point);
 		int value_2 = this.Intersection(next_point);
