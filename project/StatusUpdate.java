@@ -62,6 +62,7 @@ public class StatusUpdate extends Event {
 			
 			 //Imprime o custo do caminho optimo
 			System.out.println("Cost/Comfort:				"+sim.bestcost);
+			System.out.println("");
 		}
 		
 		//Se o instante final tiver sido atingido a simulacao termina

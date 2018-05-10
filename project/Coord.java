@@ -50,7 +50,7 @@ public class Coord {
 		if (y != other.y)
 			return false;
 		return true;
-	}
+	} 
 	
 	
 	

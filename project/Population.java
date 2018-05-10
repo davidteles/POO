@@ -65,16 +65,7 @@ public class Population {
 			}
 	}
 	
-	
-	//Adiciona um invividuo
-	public void addIndividual(Coord pos, int cmax, int n, int m, int k) {
-		
-		Individual temp = new Individual(this.individuals.getLast().getId()+1, pos);
-		temp.SetComfortDistance(cmax, n, m, this.k, this.fin_pos);
-		this.individuals.addLast(temp);
-		
-	}
-	
+
 	//Funcao que procura o individio com um determinado ID
 	public Individual findID(int id) {
 		for(int aux = 0; aux<this.individuals.size() ; aux++) {

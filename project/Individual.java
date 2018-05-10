@@ -116,21 +116,7 @@ public class Individual {
 		dist_end= (Math.abs(fin_pos.x- current_pos.x) + Math.abs(fin_pos.y - current_pos.y));
 		return dist_end;
 	}
-	
 
-	//Adiciona posicao ao caminho do individuo
-	public void addPath(int x,int y) {
-		
-		Coord temp = new Coord(x,y);
-		this.path.addLast(temp);
-		
-	}
-	
-	//Remove posicao do caminho do indivduo 
-	public void removePath() {
-		
-		this.path.removeLast();
-	}
 	
 	//calculo do conforto
 	public float Confort (int cmax, int n, int m, int k, Coord finalpos) {

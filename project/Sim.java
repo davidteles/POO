@@ -13,7 +13,7 @@ public class Sim {
 		}
 		
 		//String com o nome do ficheiro xml
-		String filename = new String(args[0]);
+		String filename = new String(args[0]); 
 			
 		XML parser = new XML();
 		parser.ParseXML(filename); 
