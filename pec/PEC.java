@@ -1,6 +1,6 @@
 package pec;
 
-//Importacao dos packages necessarios
+/*Importacao dos packages necessarios*/
 import java.util.PriorityQueue;
 
 import event.Event;
@@ -10,22 +10,22 @@ import java.util.Comparator;
 
 public class PEC {
 	 
-	//FIELD
+	/*FIELD*/
 	 PriorityQueue<Event> pec; /*Fila de prioridades para organizar os eventos de acordo 
 	 						com o instante em que devem ocorrer*/
-	 //CONSTRUCTOR
+	 /*CONSTRUCTOR*/
 	 public PEC() {
-		 pec = new PriorityQueue<Event>( new Checker()); //Cria a fila de prioridades
+		 pec = new PriorityQueue<Event>( new Checker()); /*Cria a fila de prioridades*/
 	 }
 
-	 //METODOS
+	 /*METODOS*/
 	 
-	 //Adiciona evento a fila
+	 /*Adiciona evento a fila*/
 	 public void addToPEC(Event aux) {
 		 this.pec.add(aux);
 	 }
 	 
-	 //Retira da fila o evento mais prioritario
+	 /*Retira da fila o evento mais prioritario*/
 	 public Event getNextEvent() {
 			
 			return this.pec.poll();
@@ -33,9 +33,9 @@ public class PEC {
 	 
 }
 
-//INTERFACES
+/*INTERFACES*/
 
-//Interface para estabelecer a prioridade dos eventos
+/*Interface para estabelecer a prioridade dos eventos*/
 class Checker implements Comparator<Event>{
 	public int compare(Event a, Event b)
     {
