@@ -1,6 +1,6 @@
 package project;
 
-//Importacao dos packages necessarios
+/*Importacao dos packages necessarios*/
 import java.util.Random;
 
 import event.Event;
@@ -11,52 +11,52 @@ import java.util.Collections;
 
 public class Epidemic extends Event {
 
-	//CONSTRUCTOR
+	/*CONSTRUCTOR*/
 	public Epidemic(float instant) {
-		super(instant); //Instante em que ocorre a epidemia - Instante do evento
+		super(instant); /*Instante em que ocorre a epidemia - Instante do evento*/
 	}
 
-	//METODOS
+	/*METODOS*/
 	
-	//Realizacao da Epidemia
+	/*Realizacao da Epidemia*/
 	public void realizeEvent(Object o) {
-		Simulation sim = (Simulation) o; //Cast do objecto recebido para Simulacao
-		Random random = new Random(); //Inicializacao de uma variavel aleatoria (observacao aleatoria)
-		LinkedList<Individual> ind; //Referencia para a lista de individuos
+		Simulation sim = (Simulation) o; /*Cast do objecto recebido para Simulacao*/
+		Random random = new Random(); /*Inicializacao de uma variavel aleatoria (observacao aleatoria)*/
+		LinkedList<Individual> ind; /*Referencia para a lista de individuos*/
 		
-		ind = sim.pop.individuals; //Referencia para a lista de individuos da populacao
-		Comparator<Individual> cmp1 = new ConfortComparator(); //Comparador de conforto na lista
+		ind = sim.pop.individuals; /*Referencia para a lista de individuos da populacao*/
+		Comparator<Individual> cmp1 = new ConfortComparator(); /*Comparador de conforto na lista*/
 		
-		Collections.sort(ind, cmp1); //Ordena a lista consoante o conforto (ordem descrescente)
+		Collections.sort(ind, cmp1); /*Ordena a lista consoante o conforto (ordem descrescente)*/
 		
 		float threshold; /*Inicializacao de variavel que e usada como threshold para determinar os
 						Individuos que morrem na epidemia*/
 		
-		//seleccao dos individuos com menor conforto que vao morrer
+		/*seleccao dos individuos com menor conforto que vao morrer*/
 		for(int i=5; i<ind.size(); i++) { /*ciclo comeca percorrer a lista dos individuos a partir dos
 										5 individuos melhores*/
 			
-			threshold = random.nextFloat(); //threshold e um valor aleatorio entre 0 e 1
+			threshold = random.nextFloat(); /*threshold e um valor aleatorio entre 0 e 1*/
 			
-			//Se o threshold for maior que o conforto o individuo em questao morre
+			/*Se o threshold for maior que o conforto o individuo em questao morre*/
 			if(threshold>ind.get(i).getConfort()) {
-				sim.pop.individuals.remove(ind.get(i)); //remove o individuo que morreu da lista
+				sim.pop.individuals.remove(ind.get(i)); /*remove o individuo que morreu da lista*/
 			}
 		}
 		
-		Comparator<Individual> cmp2 = new IdComparator(); //Comparador de ID na lista
+		Comparator<Individual> cmp2 = new IdComparator(); /*Comparador de ID na lista*/
 		
-		Collections.sort(ind, cmp2); //volta a ordenar a lista pelos IDs (ordem crescente)
+		Collections.sort(ind, cmp2); /*volta a ordenar a lista pelos IDs (ordem crescente)*/
 		
-		sim.pop.setV(sim.pop.individuals.size()); //actualiza o numero de individuos que constituem a populacao actual
+		sim.pop.setV(sim.pop.individuals.size()); /*actualiza o numero de individuos que constituem a populacao actual*/
 		
 	}
 				
 }
 
-//INTERFACES
+/*INTERFACES*/
 
-//Comparador que permite ordenadar a lista de individuos pelo conforto por ordem decrescente
+/*Comparador que permite ordenadar a lista de individuos pelo conforto por ordem decrescente*/
 class ConfortComparator implements Comparator<Individual>{
 	public int compare(Individual a, Individual b)
     {
@@ -69,7 +69,7 @@ class ConfortComparator implements Comparator<Individual>{
     }
 }
 
-//Comparador que permite ordenar a lista de individuos pelo ID por ordem crescente
+/*Comparador que permite ordenar a lista de individuos pelo ID por ordem crescente*/
 class IdComparator implements Comparator<Individual>{
 	public int compare(Individual a, Individual b)
     {
