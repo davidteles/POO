@@ -28,8 +28,8 @@ public class Move extends Event {
 		sim.curr_instant=this.instant; /*Instante actual da simulacao e o instante em que
 		 						ocorre o movimento - evento actual*/
 		
-		Individual individual = sim.pop.findID(this.ID); /*Procura na lista o individuo que se vai*/ 
-																							mover*/
+		Individual individual = sim.pop.findID(this.ID); /*Procura na lista o individuo que se vai mover*/ 
+																							mov
 		if (individual==null) {
 			return;
 		}
